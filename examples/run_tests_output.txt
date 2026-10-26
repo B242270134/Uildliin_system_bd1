@@ -1,0 +1,32 @@
+T1. Хадгалсан kernel snapshot-уудын DFS дараалал
+  [PASS] python3 tests/compare_ps.py --file examples/snapshot1_kernel.json (exit 0)
+  [PASS] python3 tests/compare_ps.py --file examples/snapshot2_kernel.json (exit 0)
+  [PASS] python3 tests/compare_ps.py --file examples/snapshot_threads_kernel.json (exit 0)
+T1b. QEMU (Linux 6.8.0-31) дээрх шинэ snapshot: DFS + LINEAR бүрэн байдал + ps-тэй тулгалт
+  [PASS] python3 tests/compare_ps.py --file examples/qemu/snap_workload.json --ps-file examples/qemu/ps_workload.txt (exit 0)
+  [PASS] python3 tests/compare_ps.py --file examples/qemu/snap_stopped.json (exit 0)
+  [PASS] max_tasks=16 snapshot: count=16, truncated=true
+  [PASS] thread-ээс fork хийсэн 2 хүүхэд шинэ модульд бий, хуучинд алга
+T2. Санаатай эвдсэн DFS дарааллыг илрүүлэх (сөрөг тест)
+  [PASS] python3 tests/compare_ps.py --file tests/bad_dfs_order.json (exit 1)
+T3. Хоёр snapshot-ын ялгаа (дахин уншихад шинэчлэгдсэн эсэх)
+  added: [(116, 4441340870), (123, 5483897370)] gone: [(115, 4358472230)]
+  [PASS] snapshot #1 -> #2: шинэ task илэрсэн
+T4. Сервер API (userspace горим, порт 8199)
+  [PASS] GET /api/tasks 200
+  [PASS] depth=0 -> 400
+  [PASS] 3905 процесс -> 400
+  [PASS] JSON биш -> 400
+  [PASS] spawn 1x2 -> 200
+  [PASS] граф дээр bd1-* 3 процесс гарсан
+  [PASS] kill-ийн дараа bd1-* алга (zombie үлдээгүй)
+  [PASS] туршилтын процессгүй SIGSTOP -> 400
+  [PASS] буруу action -> 400
+  [PASS] worker thread-ээс fork: 2 хүүхэд root-д, 1 thread
+  [PASS] SIGSTOP -> 200
+  [PASS] SIGSTOP дараа бүх bd1-* төлөв T
+  [PASS] threadfork модыг зогсооход бүгд цэвэрлэгдсэн
+T5. Module ачаалаагүй үеийн алдааны мэдээлэл (kernel горим)
+  [PASS] /proc/tasktree алга -> 503 + hint
+
+Нийт: 23 PASS, 0 FAIL

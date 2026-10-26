@@ -1,0 +1,20 @@
+K1   PASS show_threads=abc rejected
+K2   PASS max_tasks=1 rejected
+K3   PASS max_tasks=99999 rejected
+K4   PASS Part I listed 75 tasks
+K5   PASS Part II shows 2 thread-forked children
+K6   PASS tasktree loaded
+K7   PASS double insmod rejected (File exists)
+K8   PASS 30 consecutive reads
+K9   PASS runtime max_tasks=5 rejected
+K10  PASS rmmod removed /proc/tasktree
+K11  PASS no BUG/Oops/WARNING
+H1   PASS workload snapshot: 80 tasks, LINEAR 75, missing in DFS []
+H2   PASS thread-forked children [(101, 91, 91), (102, 91, 91)] of bd1-thrfork 91
+H3   PASS show_threads: 3 threads of bd1-threads
+H4   PASS ps vs kernel: common 74/75, PPID mismatches []
+H5   PASS SIGSTOP tree root 92 state=T
+H6   PASS max_tasks=16: count=16 truncated=True
+H7   PASS after kill: bd1-* left []
+H8   PASS OLD module (leader-only DFS): bd1-thrchild [] vs NEW [101, 102] -> bug reproduced & fixed
+Нийт: 19/19 PASS

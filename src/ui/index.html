@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="mn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Task Graph — Linux task tree</title>
+<style>
+:root{
+  --bg:#f6f7f9; --panel:#ffffff; --ink:#1b1f24; --muted:#5d6672; --line:#d9dde3; --edge:#b5bcc6;
+  --accent:#2f6fde; --good:#1f9d55; --bad:#d64545; --warn:#d68a1c; --hl:#f2c94c;
+  --sR:#1f9d55; --sS:#2f6fde; --sD:#d68a1c; --sI:#9aa3ae; --sZ:#d64545; --sT:#8b5cf6; --sX:#1b1f24;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#14171b; --panel:#1c2026; --ink:#e7eaee; --muted:#9aa3ae; --line:#2e343c; --edge:#4a525d;
+    --accent:#6b9cff; --good:#3fbf74; --bad:#f06a6a; --warn:#f0a443; --hl:#e8c547;
+    --sR:#3fbf74; --sS:#6b9cff; --sD:#f0a443; --sI:#7c8591; --sZ:#f06a6a; --sT:#a78bfa; --sX:#e7eaee; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;height:100vh;display:flex;flex-direction:column}
+header{display:flex;align-items:center;gap:16px;padding:10px 16px;border-bottom:1px solid var(--line);background:var(--panel);flex-wrap:wrap}
+header h1{font-size:16px;margin:0;font-weight:650}
+header .sub{color:var(--muted);font-size:12px}
+.pill{font:12px var(--mono);padding:3px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.pill.ok{color:var(--good);border-color:currentColor}.pill.err{color:var(--bad);border-color:currentColor}
+main{flex:1;display:grid;grid-template-columns:270px 1fr 330px;min-height:0}
+aside,section.side{background:var(--panel);overflow:auto;padding:12px 14px}
+aside{border-right:1px solid var(--line)} section.side{border-left:1px solid var(--line)}
+fieldset{border:1px solid var(--line);border-radius:8px;margin:0 0 12px;padding:8px 10px 10px}
+legend{font-weight:600;font-size:12px;color:var(--muted);padding:0 4px;text-transform:uppercase;letter-spacing:.04em}
+label{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:6px 0;font-size:13px}
+label.chk{justify-content:flex-start}
+input[type=number],input[type=text],select{width:110px;padding:4px 6px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);font:13px var(--mono)}
+input[type=text]{width:100%}
+button{padding:6px 10px;border-radius:6px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer;font-size:13px}
+button:hover{border-color:var(--accent)}
+button.primary{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
+button:disabled{opacity:.5;cursor:not-allowed}
+.row{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.err{color:var(--bad)}.muted{color:var(--muted)}.mono{font-family:var(--mono)}
+#msg{font-size:12px;margin-top:6px;min-height:1em}
+#stage{position:relative;overflow:hidden;min-width:0;cursor:grab}
+#stage.drag{cursor:grabbing}
+#graph{width:100%;height:100%;display:block}
+#banner{position:absolute;inset:16px 16px auto 16px;padding:12px 14px;border-radius:8px;border:1px solid var(--bad);background:var(--panel);display:none}
+#zoombar{position:absolute;right:12px;bottom:12px;display:flex;gap:4px}
+#zoombar button{width:32px;padding:4px}
+.legend{display:grid;grid-template-columns:auto 1fr auto;gap:4px 8px;align-items:center;font-size:12px}
+.sw{width:12px;height:12px;border-radius:50%}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px}
+.stat{border:1px solid var(--line);border-radius:8px;padding:6px 8px}
+.stat b{display:block;font-size:18px}
+.stat span{font-size:11px;color:var(--muted)}
+h3{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin:14px 0 6px}
+table{width:100%;border-collapse:collapse;font:12px var(--mono)}
+td,th{padding:2px 4px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
+tr.sel td{background:color-mix(in srgb,var(--accent) 18%,transparent)}
+tr.cur td{background:color-mix(in srgb,var(--hl) 35%,transparent)}
+tbody tr{cursor:pointer}
+#tablewrap{max-height:320px;overflow:auto;border:1px solid var(--line);border-radius:6px}
+.chg{font:12px var(--mono);max-height:150px;overflow:auto}
+.chg .add{color:var(--good)}.chg .del{color:var(--bad)}.chg .st{color:var(--warn)}
+dl{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;margin:0;font-size:12px}
+dt{color:var(--muted)} dd{margin:0;font-family:var(--mono);word-break:break-all}
+svg text{font:11px var(--mono);fill:var(--ink)}
+.node.dim{opacity:.18}
+.edge{fill:none;stroke:var(--edge);stroke-width:1.1}
+.edge.thr{stroke-dasharray:3 3}
+.edge.dim{opacity:.15}
+@media (max-width:1100px){main{grid-template-columns:240px 1fr}section.side{grid-column:1/-1;border-left:0;border-top:1px solid var(--line)}}
+@media (max-width:700px){main{display:block;overflow:auto}#stage{height:70vh}aside{border-right:0}}
+</style>
+</head>
+<body>
+<header>
+  <div><h1>Task Graph</h1><div class="sub">Kernel module (<span class="mono">/proc/tasktree</span>) → DFS task мод · OSC Ch.3 Project 3</div></div>
+  <span id="pSource" class="pill">source: …</span>
+  <span id="pSnap" class="pill">snapshot: –</span>
+  <span id="pTime" class="pill">–</span>
+  <span id="pAuto" class="pill">auto: off</span>
+</header>
+<main>
+<aside>
+  <fieldset><legend>Өгөгдөл</legend>
+    <div class="row"><button id="btnRefresh" class="primary">⟳ Refresh (дахин унших)</button></div>
+    <label class="chk"><input type="checkbox" id="auto"> Автомат refresh</label>
+    <label>Интервал (сек, 1–60) <input type="number" id="interval" min="1" max="60" value="3"></label>
+    <label class="chk"><input type="checkbox" id="threads"> Thread-уудыг харуулах</label>
+    <label>Түүх <select id="history"></select></label>
+    <div class="row"><button id="btnDownload">JSON татах</button></div>
+  </fieldset>
+  <fieldset><legend>Харагдац</legend>
+    <label>Root PID <input type="number" id="rootPid" min="0" value="0"></label>
+    <label>Хамгийн их гүн (1–64) <input type="number" id="maxDepth" min="1" max="64" value="64"></label>
+    <label class="chk"><input type="checkbox" id="foldK" checked> kthreadd-ийн хүүхдийг хураах</label>
+    <label class="chk"><input type="checkbox" id="hideK"> Kernel thread-ийг нуух</label>
+    <label style="display:block">Хайх (нэр эсвэл PID)<input type="text" id="search" placeholder="ж: bash, 1234"></label>
+    <div class="row"><button id="btnReset">Reset</button><button id="btnFit">Fit</button></div>
+    <div id="msg"></div>
+  </fieldset>
+  <fieldset><legend>DFS алхамчлах</legend>
+    <label>Алхам <input type="range" id="step" min="0" max="0" value="0" style="width:120px"></label>
+    <div class="row"><button id="btnPlay">▶ Тоглуулах</button><button id="btnStepClear">Цэвэрлэх</button></div>
+    <div id="stepInfo" class="muted mono" style="font-size:12px;margin-top:6px"></div>
+  </fieldset>
+  <fieldset><legend>Туршилтын процесс</legend>
+    <label>Гүн (1–5) <input type="number" id="spDepth" min="1" max="5" value="2"></label>
+    <label>Салбар (1–5) <input type="number" id="spBreadth" min="1" max="5" value="3"></label>
+    <label>Хугацаа сек (5–600) <input type="number" id="spSec" min="5" max="600" value="60"></label>
+    <label class="chk"><input type="checkbox" id="spZombie"> wait() хийхгүй (zombie харах)</label>
+    <label class="chk"><input type="checkbox" id="spThread"> Worker thread-ээс fork()</label>
+    <div class="row"><button id="btnSpawn">fork() мод үүсгэх</button><button id="btnKill">Зогсоох</button></div>
+    <div class="row"><button id="btnStop" title="SIGSTOP → T төлөв">SIGSTOP</button><button id="btnCont" title="SIGCONT → дахин ажиллана">SIGCONT</button></div>
+    <div id="spMsg" class="muted" style="font-size:12px;margin-top:6px"></div>
+  </fieldset>
+</aside>
+<div id="stage">
+  <svg id="graph" role="img" aria-label="Task tree graph"><g id="vp"><g id="edges"></g><g id="nodes"></g></g></svg>
+  <div id="banner"></div>
+  <div id="zoombar"><button id="zIn" title="Томруулах">+</button><button id="zOut" title="Жижигрүүлэх">−</button></div>
+</div>
+<section class="side">
+  <div class="stats">
+    <div class="stat"><b id="stTotal">–</b><span>нийт task</span></div>
+    <div class="stat"><b id="stDepth">–</b><span>модны гүн</span></div>
+    <div class="stat"><b id="stNew" style="color:var(--good)">–</b><span>шинэ (өмнөхөөс)</span></div>
+    <div class="stat"><b id="stGone" style="color:var(--bad)">–</b><span>дууссан</span></div>
+  </div>
+  <h3>Тэмдэглэгээ (legend)</h3>
+  <div class="legend" id="legend"></div>
+  <div class="legend" style="margin-top:8px">
+    <svg width="14" height="14"><circle cx="7" cy="7" r="5" fill="var(--muted)"/></svg><span>User процесс</span><span></span>
+    <svg width="14" height="14"><rect x="2" y="2" width="10" height="10" fill="var(--muted)"/></svg><span>Kernel thread</span><span></span>
+    <svg width="14" height="14"><circle cx="7" cy="7" r="3" fill="var(--muted)"/></svg><span>Thread (тасархай ирмэг)</span><span></span>
+    <svg width="14" height="14"><circle cx="7" cy="7" r="5" fill="none" stroke="var(--good)" stroke-width="2.5"/></svg><span>Шинэ task</span><span></span>
+    <svg width="14" height="14"><circle cx="7" cy="7" r="5" fill="none" stroke="var(--warn)" stroke-width="2.5"/></svg><span>Төлөв өөрчлөгдсөн</span><span></span>
+    <svg width="14" height="14"><circle cx="7" cy="7" r="5" fill="none" stroke="var(--hl)" stroke-width="3"/></svg><span>Хайлтын илэрц / DFS одоогийн</span><span></span>
+  </div>
+  <h3>Сонгосон task</h3>
+  <div id="detail" class="muted" style="font-size:12px">Граф дээрх зангилаа эсвэл хүснэгтийн мөр дээр дарна уу.</div>
+  <h3>Өөрчлөлт (өмнөх snapshot-оос)</h3>
+  <div id="changes" class="chg muted">–</div>
+  <h3>Жагсаалт <select id="order" style="width:auto;margin-left:6px"><option value="dfs">DFS дараалал (Part II)</option><option value="linear">LINEAR — for_each_process (Part I)</option></select></h3>
+  <div id="tablewrap"><table><thead><tr><th>#</th><th>PID</th><th>PPID</th><th>S</th><th>COMMAND</th></tr></thead><tbody id="tbody"></tbody></table></div>
+</section>
+</main>
+<script>
+"use strict";
+const $ = id => document.getElementById(id);
+const NS = "http://www.w3.org/2000/svg";
+const STATES = {R:"Running / ready",S:"Sleeping (interruptible)",D:"Disk sleep (uninterruptible)",I:"Idle kernel thread",Z:"Zombie",T:"Stopped",t:"Traced",X:"Dead",P:"Parked"};
+const stateVar = s => ({R:"--sR",S:"--sS",D:"--sD",I:"--sI",Z:"--sZ",T:"--sT",t:"--sT",X:"--sX",P:"--sI"}[s] || "--muted");
+const ROW = 18, COL = 200, MAX_HISTORY = 20;
+
+let linRank = new Map(), snap = null, prevKeys = null, history = [], diff = {added:new Set(), changed:new Set(), gone:[]};
+let byPid = new Map(), kids = new Map(), visible = [], pos = new Map();
+let selected = null, collapsed = new Set(), timer = null, playTimer = null;
+let view = {x:20, y:20, k:1};
+const key = t => t.pid + ":" + t.start_ns;
+
+function msg(text, isErr){ const m=$("msg"); m.textContent=text||""; m.className=isErr?"err":"muted"; }
+function intIn(el, lo, hi, name){
+  const v = Number(el.value);
+  if (!Number.isInteger(v) || v < lo || v > hi){ el.style.borderColor="var(--bad)"; msg(`${name}: ${lo}–${hi} хооронд бүхэл тоо оруулна уу.`, true); return null; }
+  el.style.borderColor=""; return v;
+}
+
+// ---------------------------------------------------------------- data
+async function refresh(){
+  const btn=$("btnRefresh"); btn.disabled=true;
+  try{
+    const r = await fetch("/api/tasks" + ($("threads").checked ? "?threads=1" : ""), {cache:"no-store"});
+    const d = await r.json();
+    if (!r.ok) throw Object.assign(new Error(d.error||r.statusText), {hint:d.hint});
+    $("banner").style.display="none";
+    accept(d, true);
+    $("pSource").className="pill ok";
+  }catch(e){
+    $("banner").innerHTML = `<b class="err">Өгөгдөл уншиж чадсангүй.</b><br>${esc(e.message)}${e.hint?`<br><span class="muted">Шийдэл: </span><code>${esc(e.hint)}</code>`:""}`;
+    $("banner").style.display="block"; $("pSource").className="pill err";
+  }finally{ btn.disabled=false; }
+}
+
+function accept(d, isNew){
+  const keys = new Map(d.tasks.map(t => [key(t), t]));
+  if (isNew){
+    diff = {added:new Set(), changed:new Set(), gone:[]};
+    if (prevKeys){
+      for (const [k,t] of keys){ const o=prevKeys.get(k); if(!o) diff.added.add(k); else if(o.state!==t.state) diff.changed.add(k); }
+      for (const [k,o] of prevKeys) if(!keys.has(k)) diff.gone.push(o);
+    }
+    prevKeys = keys;
+    d._diff = diff; d._fetched = new Date();
+    history.unshift(d); if (history.length > MAX_HISTORY) history.pop();
+    renderHistory();
+  } else diff = d._diff || {added:new Set(),changed:new Set(),gone:[]};
+  snap = d;
+  byPid = new Map(); kids = new Map();
+  // Графын ирмэг: kernel-ийн "parent" (DFS-ээр ирсэн зангилаа); хуучин форматад ppid
+  for (const t of d.tasks){ const par = t.parent ?? t.ppid; byPid.set(t.pid, t); if(!kids.has(par)) kids.set(par, []); kids.get(par).push(t); }
+  linRank = new Map((d.linear||[]).map((p,i)=>[p,i]));
+  $("pSource").textContent = "source: " + d.source;
+  $("pSnap").textContent = "snapshot #" + d.snapshot + (d.read_ms!=null?` · ${d.read_ms} ms`:"") + (d.truncated?` · TRUNCATED (cap ${d.cap})`:"");
+  $("pSnap").className = d.truncated ? "pill err" : "pill";
+  $("pTime").textContent = (d._fetched||new Date()).toLocaleTimeString() + " · kernel " + d.kernel;
+  render();
+}
+
+function renderHistory(){
+  const s=$("history"); s.innerHTML="";
+  history.forEach((h,i)=>{ const o=document.createElement("option"); o.value=i;
+    o.textContent=`#${h.snapshot} ${h._fetched.toLocaleTimeString()} (${h.count})`; s.appendChild(o); });
+}
+
+// ---------------------------------------------------------------- layout
+function buildVisible(){
+  const rootPid = intIn($("rootPid"), 0, 4194304, "Root PID");
+  const maxDepth = intIn($("maxDepth"), 1, 64, "Хамгийн их гүн");
+  if (rootPid === null || maxDepth === null) return null;
+  const root = byPid.get(rootPid);
+  if (!root){ $("rootPid").style.borderColor="var(--bad)"; msg(`PID ${rootPid} одоогийн snapshot-д алга (дууссан эсвэл буруу). Root=0 болгоно уу.`, true); return null; }
+  msg("");
+  const hideK = $("hideK").checked, foldK = $("foldK").checked;
+  const out = []; let leaf = 0;
+  function walk(t, depth){
+    const node = {t, depth, children:[], hidden:0};
+    let ch = (kids.get(t.pid)||[]).filter(c => c.pid !== t.pid);
+    if (hideK) ch = ch.filter(c => !c.kthread);
+    const isFolded = collapsed.has(t.pid) || (foldK && t.comm==="kthreadd" && t.pid===2 && !collapsed.has(-2));
+    if (depth >= maxDepth || isFolded){ node.hidden = countDesc(t, hideK); ch = []; }
+    out.push(node);
+    for (const c of ch) node.children.push(walk(c, depth+1));
+    if (node.children.length) node.y = (node.children[0].y + node.children[node.children.length-1].y)/2;
+    else node.y = (leaf++) * ROW;
+    node.x = depth * COL;
+    return node;
+  }
+  walk(root, 0);
+  return out;
+}
+function countDesc(t, hideK){ let n=0; for(const c of (kids.get(t.pid)||[])){ if(c.pid===t.pid||(hideK&&c.kthread)) continue; n += 1 + countDesc(c, hideK);} return n; }
+
+// ---------------------------------------------------------------- render
+function el(tag, attrs, parent){ const e=document.createElementNS(NS,tag); for(const k in attrs) e.setAttribute(k, attrs[k]); if(parent) parent.appendChild(e); return e; }
+function esc(s){ return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+
+function render(){
+  if (!snap) return;
+  const vis = buildVisible();
+  if (!vis){ $("edges").innerHTML=""; $("nodes").innerHTML=""; visible=[]; renderSide(); return; }
+  visible = vis;
+  vis.forEach((n,i)=>{ n.idx=i; });
+  const stepEl=$("step"); stepEl.max = vis.length; if (+stepEl.value > vis.length) stepEl.value = vis.length; pos = new Map(vis.map(n => [n.t.pid + (n.t.thread?"t":""), n]));
+  const E=$("edges"), N=$("nodes"); E.innerHTML=""; N.innerHTML="";
+  const q = $("search").value.trim().toLowerCase();
+  const step = +$("step").value, stepOn = step > 0;
+  let matches = 0;
+  for (const n of vis) for (const c of n.children){
+    const mx=(n.x+c.x)/2;
+    el("path",{d:`M${n.x+7},${n.y} C${mx},${n.y} ${mx},${c.y} ${c.x-7},${c.y}`, class:"edge"+(c.t.thread?" thr":"")+(stepOn&&c.idx>=step?" dim":"")}, E);
+  }
+  for (const n of vis){
+    const t=n.t, k=key(t);
+    const g = el("g",{class:"node"+(stepOn&&n.idx>=step?" dim":""), transform:`translate(${n.x},${n.y})`, "data-pid":t.pid}, N);
+    g.style.cursor="pointer";
+    const fill = `var(${stateVar(t.state)})`;
+    const isMatch = q && (t.comm.toLowerCase().includes(q) || String(t.pid)===q);
+    if (isMatch) matches++;
+    const ring = diff.added.has(k) ? "var(--good)" : diff.changed.has(k) ? "var(--warn)" : null;
+    if ((stepOn && n.idx===step-1) || isMatch) el("circle",{r:13, fill:"none", stroke:"var(--hl)", "stroke-width":3}, g);
+    if (ring) el("circle",{r:9, fill:"none", stroke:ring, "stroke-width":2.5}, g);
+    if (t.kthread) el("rect",{x:-5,y:-5,width:10,height:10,fill}, g);
+    else el("circle",{r:t.thread?3.5:6, fill}, g);
+    if (selected===t.pid) el("circle",{r:13, fill:"none", stroke:"var(--accent)", "stroke-width":1.5}, g);
+    const label = el("text",{x:12, y:4}, g);
+    label.textContent = `${t.comm} (${t.pid})` + (n.hidden?`  +${n.hidden}`:"") + (t.threads>1&&!t.thread?`  ⧉${t.threads}`:"");
+    if (diff.added.has(k)) label.setAttribute("font-weight","700");
+    const title = el("title",{}, g); title.textContent = `${t.comm}  pid=${t.pid} ppid=${t.ppid} state=${t.state} (${STATES[t.state]||"?"})`;
+    g.addEventListener("click", ev => { ev.stopPropagation(); select(t.pid); });
+    g.addEventListener("dblclick", ev => { ev.stopPropagation(); toggle(t.pid); });
+  }
+  if (q) msg(`Хайлт: ${matches} илэрц` + (matches? "" : " (хураагдсан хэсэгт байж болно)"), !matches);
+  applyView();
+  renderSide();
+}
+
+function toggle(pid){
+  if (pid===2 && $("foldK").checked){ collapsed.has(-2)?collapsed.delete(-2):collapsed.add(-2); }
+  else collapsed.has(pid)?collapsed.delete(pid):collapsed.add(pid);
+  render();
+}
+
+function renderSide(){
+  const ts = snap.tasks;
+  $("stTotal").textContent = ts.length; $("stDepth").textContent = snap.max_depth;
+  $("stNew").textContent = history.length>1 || snap!==history[0] ? diff.added.size : "–";
+  $("stGone").textContent = history.length>1 || snap!==history[0] ? diff.gone.length : "–";
+  const cnt = {}; for (const t of ts) cnt[t.state]=(cnt[t.state]||0)+1;
+  $("legend").innerHTML = Object.keys(STATES).filter(s=>cnt[s]||"RSDIZ".includes(s)).map(s =>
+    `<span class="sw" style="background:var(${stateVar(s)})"></span><span><b class="mono">${s}</b> ${STATES[s]}</span><span class="mono">${cnt[s]||0}</span>`).join("");
+  const lines=[];
+  for (const k of diff.added){ const t=snap.tasks.find(x=>key(x)===k); if(t) lines.push(`<div class="add">+ ${t.pid} ${esc(t.comm)} (ppid ${t.ppid})</div>`); }
+  for (const t of diff.gone) lines.push(`<div class="del">− ${t.pid} ${esc(t.comm)}</div>`);
+  for (const k of diff.changed){ const t=snap.tasks.find(x=>key(x)===k); const o=prevKeys&&history[1]?history[1].tasks.find(x=>key(x)===k):null; if(t) lines.push(`<div class="st">~ ${t.pid} ${esc(t.comm)} ${o?o.state:"?"}→${t.state}</div>`); }
+  $("changes").innerHTML = lines.length ? lines.join("") : (history.length>1 ? "Өөрчлөлт алга." : "Дахин Refresh хийхэд өөрчлөлт энд гарна.");
+  renderTable(); renderDetail();
+  const step=+$("step").value, nv=visible.length; const cur = step>0 && visible[step-1] ? visible[step-1].t : null;
+  $("stepInfo").textContent = step>0 ? `${step}/${nv}: ${cur?cur.comm+" ("+cur.pid+")":""}` : `0/${nv} — харагдаж буй модыг DFS-ээр алхамчилна`;
+}
+
+function renderTable(){
+  const ts = [...snap.tasks];
+  const lin = $("order").value==="linear";
+  const rank = t => t.pid===0 ? -1 : t.thread ? (linRank.get(t.tgid) ?? 1e9) + 0.5 : (linRank.get(t.pid) ?? (linRank.size ? 1e9 : t.pid));
+  if (lin) ts.sort((a,b)=>rank(a)-rank(b) || a.pid-b.pid);
+  const step=+$("step").value, curPid = step>0 && visible[step-1] ? visible[step-1].t.pid : null;
+  $("tbody").innerHTML = ts.map(t => `<tr data-pid="${t.pid}" class="${t.pid===selected?"sel":""}${t.pid===curPid?" cur":""}"><td>${lin ? (t.pid===0?"–":t.thread?"thr":(linRank.get(t.pid) ?? "?")) : t.order}</td><td>${t.pid}</td><td>${t.ppid}</td><td style="color:var(${stateVar(t.state)})">${t.state}</td><td>${$("order").value==="dfs"?"&nbsp;".repeat(t.depth*2):""}${esc(t.comm)}${t.thread?" ·thr":""}</td></tr>`).join("");
+}
+
+function renderDetail(){
+  const t = selected!=null ? byPid.get(selected) : null;
+  if (!t){ $("detail").innerHTML = selected!=null ? `<span class="err">PID ${selected} энэ snapshot-д алга (дууссан).</span>` : "Граф дээрх зангилаа эсвэл хүснэгтийн мөр дээр дарна уу."; return; }
+  const p = byPid.get(t.ppid), ch = (kids.get(t.pid)||[]).filter(c=>c.pid!==t.pid);
+  $("detail").innerHTML = `<dl>
+    <dt>COMMAND</dt><dd>${esc(t.comm)}</dd><dt>PID / TGID</dt><dd>${t.pid} / ${t.tgid}</dd>
+    <dt>PPID (ps)</dt><dd>${t.ppid}${p?" ("+esc(p.comm)+")":""}</dd>
+    ${t.parent!=null && t.parent!==t.ppid ? `<dt>Графын эцэг</dt><dd>${t.parent} (${t.thread?"thread → TGID":"DFS"})</dd>` : ""}
+    <dt>LINEAR байр</dt><dd>${linRank.has(t.pid) ? linRank.get(t.pid) : (t.pid===0?"– (init_task)":t.thread?"– (thread)":"–")}</dd>
+    <dt>STATE</dt><dd>${t.state} — ${STATES[t.state]||"?"}${t.state_raw!=null?" (raw "+t.state_raw+")":""}</dd>
+    <dt>Төрөл</dt><dd>${t.thread?"thread":t.kthread?"kernel thread":"user process"}</dd>
+    <dt>Threads</dt><dd>${t.threads}</dd><dt>UID / prio</dt><dd>${t.uid} / ${t.prio}</dd>
+    <dt>DFS order / гүн</dt><dd>${t.order} / ${t.depth}</dd>
+    <dt>Хүүхэд</dt><dd>${ch.length}</dd><dt>Эхэлсэн</dt><dd>${(t.start_ns/1e9).toFixed(2)} s (boot-оос)</dd></dl>
+    <div class="row"><button onclick="toggle(${t.pid})">${collapsed.has(t.pid)?"Дэлгэх":"Хураах"}</button><button onclick="setRoot(${t.pid})">Root болгох</button><button onclick="center(${t.pid})">Төвлөрүүлэх</button></div>`;
+}
+
+function select(pid){ selected=pid; render(); }
+function setRoot(pid){ $("rootPid").value=pid; render(); fit(); }
+
+// ---------------------------------------------------------------- pan / zoom
+function applyView(){ $("vp").setAttribute("transform", `translate(${view.x},${view.y}) scale(${view.k})`); }
+function fit(){
+  if (!visible.length) return;
+  const st=$("stage").getBoundingClientRect();
+  const w=Math.max(...visible.map(n=>n.x))+COL, h=Math.max(...visible.map(n=>n.y))+ROW;
+  view.k = Math.max(0.15, Math.min(1.4, Math.min((st.width-40)/w, (st.height-40)/h)));
+  view.x=20; view.y=20+ Math.max(0,(st.height-40-h*view.k)/2); applyView();
+}
+function center(pid){
+  const n = visible.find(v=>v.t.pid===pid); if(!n) return;
+  const st=$("stage").getBoundingClientRect();
+  view.k=Math.max(view.k,0.9); view.x=st.width/2-n.x*view.k; view.y=st.height/2-n.y*view.k; applyView();
+}
+function zoom(f, cx, cy){
+  const st=$("stage").getBoundingClientRect(); cx??=st.width/2; cy??=st.height/2;
+  const k=Math.max(0.1,Math.min(4,view.k*f)); view.x=cx-(cx-view.x)*k/view.k; view.y=cy-(cy-view.y)*k/view.k; view.k=k; applyView();
+}
+(()=>{
+  const s=$("stage"); let drag=null;
+  s.addEventListener("mousedown",e=>{drag={x:e.clientX-view.x,y:e.clientY-view.y}; s.classList.add("drag");});
+  window.addEventListener("mousemove",e=>{ if(drag){view.x=e.clientX-drag.x; view.y=e.clientY-drag.y; applyView();}});
+  window.addEventListener("mouseup",()=>{drag=null; s.classList.remove("drag");});
+  s.addEventListener("wheel",e=>{e.preventDefault(); const r=s.getBoundingClientRect(); zoom(e.deltaY<0?1.12:1/1.12, e.clientX-r.left, e.clientY-r.top);},{passive:false});
+})();
+
+// ---------------------------------------------------------------- controls
+function setAuto(){
+  clearInterval(timer); timer=null;
+  if ($("auto").checked){
+    const s = intIn($("interval"),1,60,"Интервал"); if (s===null){ $("auto").checked=false; return; }
+    timer=setInterval(refresh, s*1000); $("pAuto").textContent=`auto: ${s}s`; $("pAuto").className="pill ok";
+  } else { $("pAuto").textContent="auto: off"; $("pAuto").className="pill"; }
+}
+async function post(url, body){
+  const r = await fetch(url,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body||{})});
+  const d = await r.json(); if(!r.ok) throw new Error(d.error||r.statusText); return d;
+}
+$("btnRefresh").onclick = refresh;
+$("auto").onchange = setAuto; $("interval").onchange = setAuto;
+$("threads").onchange = refresh;
+$("history").onchange = e => accept(history[+e.target.value], false);
+["rootPid","maxDepth","foldK","hideK","order"].forEach(id => $(id).addEventListener("change", render));
+$("search").addEventListener("input", render);
+$("tbody").addEventListener("click", e => { const tr=e.target.closest("tr"); if(tr){ select(+tr.dataset.pid); center(+tr.dataset.pid);} });
+$("btnFit").onclick = fit; $("zIn").onclick=()=>zoom(1.2); $("zOut").onclick=()=>zoom(1/1.2);
+$("stage").addEventListener("click", ()=>{ selected=null; render(); });
+$("btnReset").onclick = () => {
+  $("rootPid").value=0; $("maxDepth").value=64; $("foldK").checked=true; $("hideK").checked=false; $("search").value="";
+  $("step").value=0; collapsed.clear(); selected=null; ["rootPid","maxDepth","interval"].forEach(i=>$(i).style.borderColor="");
+  render(); fit();
+};
+$("btnDownload").onclick = () => {
+  if(!snap) return; const {_diff,_fetched,...clean}=snap;
+  const a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([JSON.stringify(clean,null,1)],{type:"application/json"}));
+  a.download=`tasktree_snapshot_${snap.snapshot}.json`; a.click();
+};
+$("step").addEventListener("input", render);
+$("btnStepClear").onclick = ()=>{ clearInterval(playTimer); playTimer=null; $("btnPlay").textContent="▶ Тоглуулах"; $("step").value=0; render(); };
+$("btnPlay").onclick = () => {
+  if (playTimer){ clearInterval(playTimer); playTimer=null; $("btnPlay").textContent="▶ Тоглуулах"; return; }
+  $("btnPlay").textContent="⏸ Зогсоох";
+  playTimer = setInterval(()=>{ const s=$("step"); if(+s.value>=+s.max){ $("btnPlay").click(); return;} s.value=+s.value+1; render(); }, 250);
+};
+$("btnSpawn").onclick = async () => {
+  const depth=intIn($("spDepth"),1,5,"Гүн"), breadth=intIn($("spBreadth"),1,5,"Салбар"), seconds=intIn($("spSec"),5,600,"Хугацаа");
+  if (depth===null||breadth===null||seconds===null) return;
+  try{ const d=await post("/api/spawn",{depth,breadth,seconds,reap:!$("spZombie").checked,threadfork:$("spThread").checked});
+    $("spMsg").innerHTML=`<span style="color:var(--good)">Root PID ${d.root_pid}, ${d.processes} процесс (${seconds} сек). Нэр: bd1-L*</span>`;
+    $("search").value="bd1-"; setTimeout(refresh, 700);
+  }catch(e){ $("spMsg").innerHTML=`<span class="err">${esc(e.message)}</span>`; }
+};
+async function sendSignal(action){
+  try{ const d=await post("/api/signal",{action}); $("spMsg").innerHTML=`<span style="color:var(--good)">${action==="stop"?"SIGSTOP":"SIGCONT"} → бүлэг ${d.groups.join(", ")}</span>`; setTimeout(refresh, 400); }
+  catch(e){ $("spMsg").innerHTML=`<span class="err">${esc(e.message)}</span>`; }
+}
+$("btnStop").onclick = () => sendSignal("stop");
+$("btnCont").onclick = () => sendSignal("cont");
+$("btnKill").onclick = async () => {
+  try{ const d=await post("/api/kill"); $("spMsg").textContent=`Зогсоосон бүлэг: ${d.killed_groups.join(", ")||"байхгүй"}`; setTimeout(refresh, 500); }
+  catch(e){ $("spMsg").innerHTML=`<span class="err">${esc(e.message)}</span>`; }
+};
+(async()=>{
+  try{ const s=await (await fetch("/api/status")).json();
+    if(!s.can_spawn){ ["btnSpawn","btnKill","btnStop","btnCont"].forEach(i=>$(i).disabled=true); $("spMsg").textContent="file горимд идэвхгүй."; }
+    $("pSource").textContent="source: "+s.source;
+  }catch(e){}
+  await refresh(); fit();
+})();
+</script>
+</body>
+</html>

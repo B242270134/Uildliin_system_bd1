@@ -1,0 +1,667 @@
+c[?7l[2J[0mSeaBIOS (version 1.16.3-debian-1.16.3-2)
+
+
+iPXE (https://ipxe.org) 00:03.0 CA00 PCI2.10 PnP PMM+3EFCAE00+3EF0AE00 CA00
+Press Ctrl-B to configure iPXE (PCI 00:03.0)...                                                                               
+
+
+Booting from ROM...
+c[?7l[2J=== KERNEL 7.0.0-42-generic
+=== TREEPID 90
+RESULT K1 PASS show_threads=abc rejected
+RESULT K2 PASS max_tasks=1 rejected
+RESULT K3 PASS max_tasks=99999 rejected
+[    4.847569] tasktree: `99999' invalid for parameter `max_tasks'
+[    4.875696] tasktree: max_tasks=99999 invalid (allowed 16..16384)
+[    4.875834] tasktree: `99999' invalid for parameter `max_tasks'
+=== DMESG_LINEAR_BEGIN
+[    4.990502] tasklist_linear: Loading module - linear task listing
+[    4.990560] tasklist_linear: COMMAND              PID    PPID STATE      RAW
+[    4.990681] tasklist_linear: init                   1       0     S        1
+[    4.990750] tasklist_linear: kthreadd               2       0     S        1
+[    4.990759] tasklist_linear: pool_workqueue_        3       2     S        1
+[    4.990778] tasklist_linear: kworker/R-rcu_g        4       2     I     1026
+[    4.990790] tasklist_linear: kworker/R-sync_        5       2     I     1026
+[    4.990797] tasklist_linear: kworker/R-kvfre        6       2     I     1026
+[    4.990805] tasklist_linear: kworker/R-slub_        7       2     I     1026
+[    4.990813] tasklist_linear: kworker/R-netns        8       2     I     1026
+[    4.990820] tasklist_linear: kworker/0:0            9       2     I     1026
+[    4.990827] tasklist_linear: kworker/0:0H          10       2     I     1026
+[    4.990835] tasklist_linear: kworker/0:1           11       2     I     1026
+[    4.990844] tasklist_linear: kworker/u8:0          12       2     I     1026
+[    4.991061] tasklist_linear: kworker/R-mm_pe       13       2     I     1026
+[    4.991078] tasklist_linear: ksoftirqd/0           14       2     S        1
+[    4.991086] tasklist_linear: pr/ttyS0              15       2     R        0
+[    4.991093] tasklist_linear: rcu_preempt           16       2     I     1026
+[    4.991101] tasklist_linear: rcu_exp_par_gp_       17       2     S        1
+[    4.991109] tasklist_linear: rcu_exp_gp_kthr       18       2     S        1
+[    4.991117] tasklist_linear: migration/0           19       2     S        1
+[    4.991124] tasklist_linear: kprobe-optimize       20       2     S        1
+[    4.991132] tasklist_linear: idle_inject/0         21       2     S        1
+[    4.991139] tasklist_linear: cpuhp/0               22       2     S        1
+[    4.991148] tasklist_linear: cpuhp/1               23       2     S        1
+[    4.991155] tasklist_linear: idle_inject/1         24       2     S        1
+[    4.991162] tasklist_linear: migration/1           25       2     S        1
+[    4.991170] tasklist_linear: ksoftirqd/1           26       2     S        1
+[    4.991179] tasklist_linear: kworker/1:0           27       2     I     1026
+[    4.991187] tasklist_linear: kworker/1:0H          28       2     I     1026
+[    4.991196] tasklist_linear: kdevtmpfs             29       2     S        1
+[    4.991204] tasklist_linear: kworker/R-inet_       30       2     I     1026
+[    4.991213] tasklist_linear: rcu_tasks_kthre       31       2     I     1026
+[    4.991222] tasklist_linear: rcu_tasks_rude_       32       2     I     1026
+[    4.991230] tasklist_linear: kauditd               33       2     S     8193
+[    4.991239] tasklist_linear: khungtaskd            34       2     S        1
+[    4.991247] tasklist_linear: kworker/u8:1          35       2     I     1026
+[    4.991256] tasklist_linear: oom_reaper            36       2     S     8193
+[    4.991264] tasklist_linear: kworker/u8:2          37       2     I     1026
+[    4.991273] tasklist_linear: kworker/R-write       38       2     I     1026
+[    4.991282] tasklist_linear: kcompactd0            39       2     S     8193
+[    4.991292] tasklist_linear: ksmd                  40       2     S     8193
+[    4.991302] tasklist_linear: khugepaged            41       2     S     8193
+[    4.991311] tasklist_linear: kworker/R-kbloc       42       2     I     1026
+[    4.991318] tasklist_linear: kworker/R-blkcg       43       2     I     1026
+[    4.991326] tasklist_linear: kworker/R-kinte       44       2     I     1026
+[    4.991335] tasklist_linear: irq/9-acpi            45       2     S        1
+[    4.991343] tasklist_linear: kworker/1:1           46       2     I     1026
+[    4.991351] tasklist_linear: kworker/R-tpm_d       47       2     I     1026
+[    4.991359] tasklist_linear: kworker/R-ata_s       48       2     I     1026
+[    4.991367] tasklist_linear: kworker/R-md_bi       49       2     I     1026
+[    4.991374] tasklist_linear: kworker/R-md_ll       50       2     I     1026
+[    4.991383] tasklist_linear: kworker/R-md_ll       51       2     I     1026
+[    4.991391] tasklist_linear: kworker/R-edac-       52       2     I     1026
+[    4.991399] tasklist_linear: kworker/R-devfr       53       2     I     1026
+[    4.991407] tasklist_linear: watchdogd             54       2     S        1
+[    4.991415] tasklist_linear: kworker/R-quota       55       2     I     1026
+[    4.991423] tasklist_linear: kswapd0               56       2     S        1
+[    4.991430] tasklist_linear: ecryptfs-kthrea       57       2     S     8193
+[    4.991438] tasklist_linear: kworker/R-kthro       58       2     I     1026
+[    4.991446] tasklist_linear: kworker/R-acpi_       59       2     I     1026
+[    4.991454] tasklist_linear: scsi_eh_0             60       2     S        1
+[    4.991462] tasklist_linear: kworker/R-scsi_       61       2     I     1026
+[    4.991470] tasklist_linear: scsi_eh_1             62       2     S        1
+[    4.991477] tasklist_linear: kworker/R-scsi_       63       2     I     1026
+[    4.991485] tasklist_linear: kworker/u8:3          64       2     I     1026
+[    4.991493] tasklist_linear: kworker/u8:4          65       2     I     1026
+[    4.991501] tasklist_linear: kworker/R-mld         66       2     I     1026
+[    4.991510] tasklist_linear: kworker/R-ipv6_       67       2     I     1026
+[    4.991518] tasklist_linear: kworker/R-kstrp       68       2     I     1026
+[    4.991526] tasklist_linear: kworker/1:1H          70       2     I     1026
+[    4.991534] tasklist_linear: kworker/u9:0          71       2     I     1026
+[    4.991542] tasklist_linear: kworker/R-charg       82       2     I     1026
+[    4.991551] tasklist_linear: bd1-threads           88       1     S     8193
+[    4.991591] tasklist_linear: bd1-thrfork           89       1     S     8193
+[    4.991626] tasklist_linear: sh                    90       1     S        1
+[    4.991637] tasklist_linear: sh                    91      90     S        1
+[    4.991646] tasklist_linear: sh                    92      90     S     8193
+[    4.991654] tasklist_linear: bd1-thrchild          95      89     S     8193
+[    4.991663] tasklist_linear: sh                    96      91     S     8193
+[    4.991672] tasklist_linear: bd1-thrchild          98      89     S     8193
+[    4.991680] tasklist_linear: sh                   100      91     S     8193
+[    4.991688] tasklist_linear: kworker/0:2          103       2     I     1026
+[    4.991696] tasklist_linear: kworker/1:2          105       2     I     1026
+[    4.991703] tasklist_linear: insmod               110       1     R        0
+[    4.991730] tasklist_linear: Total tasks listed: 83
+[    5.009593] tasklist_linear: Removing module
+=== DMESG_LINEAR_END
+RESULT K4 PASS Part I listed 83 tasks
+=== DMESG_DFS_BEGIN
+[    5.181164] tasklist_dfs: Loading module - DFS task tree from init_task
+[    5.181348] tasklist_dfs: swapper/0 [pid=0 ppid=-1 state=R]
+[    5.181450] tasklist_dfs:   init [pid=1 ppid=0 state=S]
+[    5.181493] tasklist_dfs:     bd1-threads [pid=88 ppid=1 state=S]
+[    5.181543] tasklist_dfs:     bd1-thrfork [pid=89 ppid=1 state=S]
+[    5.181553] tasklist_dfs:       bd1-thrchild [pid=95 ppid=89 state=S]
+[    5.181561] tasklist_dfs:       bd1-thrchild [pid=98 ppid=89 state=S]
+[    5.181570] tasklist_dfs:     sh [pid=90 ppid=1 state=S]
+[    5.181577] tasklist_dfs:       sh [pid=91 ppid=90 state=S]
+[    5.181585] tasklist_dfs:         sh [pid=96 ppid=91 state=S]
+[    5.181593] tasklist_dfs:         sh [pid=100 ppid=91 state=S]
+[    5.181602] tasklist_dfs:       sh [pid=92 ppid=90 state=S]
+[    5.181610] tasklist_dfs:     insmod [pid=118 ppid=1 state=R]
+[    5.181625] tasklist_dfs:   kthreadd [pid=2 ppid=0 state=S]
+[    5.181633] tasklist_dfs:     pool_workqueue_ [pid=3 ppid=2 state=S]
+[    5.181653] tasklist_dfs:     kworker/R-rcu_g [pid=4 ppid=2 state=I]
+[    5.181661] tasklist_dfs:     kworker/R-sync_ [pid=5 ppid=2 state=I]
+[    5.181668] tasklist_dfs:     kworker/R-kvfre [pid=6 ppid=2 state=I]
+[    5.181675] tasklist_dfs:     kworker/R-slub_ [pid=7 ppid=2 state=I]
+[    5.181683] tasklist_dfs:     kworker/R-netns [pid=8 ppid=2 state=I]
+[    5.181689] tasklist_dfs:     kworker/0:0 [pid=9 ppid=2 state=I]
+[    5.181697] tasklist_dfs:     kworker/0:0H [pid=10 ppid=2 state=I]
+[    5.181704] tasklist_dfs:     kworker/0:1 [pid=11 ppid=2 state=I]
+[    5.181712] tasklist_dfs:     kworker/u8:0 [pid=12 ppid=2 state=I]
+[    5.181719] tasklist_dfs:     kworker/R-mm_pe [pid=13 ppid=2 state=I]
+[    5.181727] tasklist_dfs:     ksoftirqd/0 [pid=14 ppid=2 state=S]
+[    5.181734] tasklist_dfs:     pr/ttyS0 [pid=15 ppid=2 state=S]
+[    5.181742] tasklist_dfs:     rcu_preempt [pid=16 ppid=2 state=I]
+[    5.181749] tasklist_dfs:     rcu_exp_par_gp_ [pid=17 ppid=2 state=S]
+[    5.181756] tasklist_dfs:     rcu_exp_gp_kthr [pid=18 ppid=2 state=S]
+[    5.181764] tasklist_dfs:     migration/0 [pid=19 ppid=2 state=S]
+[    5.181771] tasklist_dfs:     kprobe-optimize [pid=20 ppid=2 state=S]
+[    5.181778] tasklist_dfs:     idle_inject/0 [pid=21 ppid=2 state=S]
+[    5.181786] tasklist_dfs:     cpuhp/0 [pid=22 ppid=2 state=S]
+[    5.181793] tasklist_dfs:     cpuhp/1 [pid=23 ppid=2 state=S]
+[    5.181800] tasklist_dfs:     idle_inject/1 [pid=24 ppid=2 state=S]
+[    5.181807] tasklist_dfs:     migration/1 [pid=25 ppid=2 state=S]
+[    5.181815] tasklist_dfs:     ksoftirqd/1 [pid=26 ppid=2 state=S]
+[    5.181822] tasklist_dfs:     kworker/1:0 [pid=27 ppid=2 state=I]
+[    5.181830] tasklist_dfs:     kworker/1:0H [pid=28 ppid=2 state=I]
+[    5.181837] tasklist_dfs:     kdevtmpfs [pid=29 ppid=2 state=S]
+[    5.181845] tasklist_dfs:     kworker/R-inet_ [pid=30 ppid=2 state=I]
+[    5.181852] tasklist_dfs:     rcu_tasks_kthre [pid=31 ppid=2 state=I]
+[    5.181859] tasklist_dfs:     rcu_tasks_rude_ [pid=32 ppid=2 state=I]
+[    5.181867] tasklist_dfs:     kauditd [pid=33 ppid=2 state=S]
+[    5.181875] tasklist_dfs:     khungtaskd [pid=34 ppid=2 state=S]
+[    5.181885] tasklist_dfs:     kworker/u8:1 [pid=35 ppid=2 state=I]
+[    5.182261] tasklist_dfs:     oom_reaper [pid=36 ppid=2 state=S]
+[    5.182280] tasklist_dfs:     kworker/u8:2 [pid=37 ppid=2 state=I]
+[    5.182288] tasklist_dfs:     kworker/R-write [pid=38 ppid=2 state=I]
+[    5.182296] tasklist_dfs:     kcompactd0 [pid=39 ppid=2 state=S]
+[    5.182304] tasklist_dfs:     ksmd [pid=40 ppid=2 state=S]
+[    5.182311] tasklist_dfs:     khugepaged [pid=41 ppid=2 state=S]
+[    5.182319] tasklist_dfs:     kworker/R-kbloc [pid=42 ppid=2 state=I]
+[    5.182327] tasklist_dfs:     kworker/R-blkcg [pid=43 ppid=2 state=I]
+[    5.182335] tasklist_dfs:     kworker/R-kinte [pid=44 ppid=2 state=I]
+[    5.182343] tasklist_dfs:     irq/9-acpi [pid=45 ppid=2 state=S]
+[    5.182351] tasklist_dfs:     kworker/1:1 [pid=46 ppid=2 state=I]
+[    5.182358] tasklist_dfs:     kworker/R-tpm_d [pid=47 ppid=2 state=I]
+[    5.182366] tasklist_dfs:     kworker/R-ata_s [pid=48 ppid=2 state=I]
+[    5.182373] tasklist_dfs:     kworker/R-md_bi [pid=49 ppid=2 state=I]
+[    5.182387] tasklist_dfs:     kworker/R-md_ll [pid=50 ppid=2 state=I]
+[    5.182395] tasklist_dfs:     kworker/R-md_ll [pid=51 ppid=2 state=I]
+[    5.182402] tasklist_dfs:     kworker/R-edac- [pid=52 ppid=2 state=I]
+[    5.182409] tasklist_dfs:     kworker/R-devfr [pid=53 ppid=2 state=I]
+[    5.182416] tasklist_dfs:     watchdogd [pid=54 ppid=2 state=S]
+[    5.182424] tasklist_dfs:     kworker/R-quota [pid=55 ppid=2 state=I]
+[    5.182432] tasklist_dfs:     kswapd0 [pid=56 ppid=2 state=S]
+[    5.182439] tasklist_dfs:     ecryptfs-kthrea [pid=57 ppid=2 state=S]
+[    5.182446] tasklist_dfs:     kworker/R-kthro [pid=58 ppid=2 state=I]
+[    5.182454] tasklist_dfs:     kworker/R-acpi_ [pid=59 ppid=2 state=I]
+[    5.182461] tasklist_dfs:     scsi_eh_0 [pid=60 ppid=2 state=S]
+[    5.182469] tasklist_dfs:     kworker/R-scsi_ [pid=61 ppid=2 state=I]
+[    5.182476] tasklist_dfs:     scsi_eh_1 [pid=62 ppid=2 state=S]
+[    5.182483] tasklist_dfs:     kworker/R-scsi_ [pid=63 ppid=2 state=I]
+[    5.182495] tasklist_dfs:     kworker/u8:3 [pid=64 ppid=2 state=I]
+[    5.182505] tasklist_dfs:     kworker/u8:4 [pid=65 ppid=2 state=I]
+[    5.182512] tasklist_dfs:     kworker/R-mld [pid=66 ppid=2 state=I]
+[    5.182520] tasklist_dfs:     kworker/R-ipv6_ [pid=67 ppid=2 state=I]
+[    5.182527] tasklist_dfs:     kworker/R-kstrp [pid=68 ppid=2 state=I]
+[    5.182535] tasklist_dfs:     kworker/1:1H [pid=70 ppid=2 state=I]
+[    5.182543] tasklist_dfs:     kworker/u9:0 [pid=71 ppid=2 state=I]
+[    5.182550] tasklist_dfs:     kworker/R-charg [pid=82 ppid=2 state=I]
+[    5.182558] tasklist_dfs:     kworker/0:2 [pid=103 ppid=2 state=I]
+[    5.182566] tasklist_dfs:     kworker/1:2 [pid=105 ppid=2 state=I]
+[    5.182605] tasklist_dfs: DFS visited 84 tasks, max depth 4
+[    5.188255] tasklist_dfs: Removing module
+=== DMESG_DFS_END
+RESULT K5 PASS Part II shows 2 thread-forked children
+RESULT K6 PASS tasktree loaded
+RESULT K7 PASS double insmod rejected (File exists)
+=== SNAP workload BEGIN
+{"source":"kernel:/proc/tasktree","snapshot":1,"time":1793300852,"kernel":"7.0.0-42-generic","show_threads":true,"cap":4096,"truncated":false,"tasks":[
+{"order":0,"pid":0,"tgid":0,"ppid":-1,"parent":-1,"depth":0,"comm":"swapper/0","state":"R","state_raw":0,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":0},
+{"order":1,"pid":1,"tgid":1,"ppid":0,"parent":0,"depth":1,"comm":"init","state":"S","state_raw":1,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":959722848},
+{"order":2,"pid":88,"tgid":88,"ppid":1,"parent":1,"depth":2,"comm":"bd1-threads","state":"S","state_raw":8193,"threads":4,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3594699059},
+{"order":3,"pid":94,"tgid":88,"ppid":1,"parent":88,"depth":3,"comm":"bd1-threads","state":"S","state_raw":8193,"threads":4,"kthread":false,"thread":true,"uid":0,"prio":120,"start_ns":3662337848},
+{"order":4,"pid":97,"tgid":88,"ppid":1,"parent":88,"depth":3,"comm":"bd1-threads","state":"S","state_raw":8193,"threads":4,"kthread":false,"thread":true,"uid":0,"prio":120,"start_ns":3671727192},
+{"order":5,"pid":99,"tgid":88,"ppid":1,"parent":88,"depth":3,"comm":"bd1-threads","state":"S","state_raw":8193,"threads":4,"kthread":false,"thread":true,"uid":0,"prio":120,"start_ns":3677422339},
+{"order":6,"pid":89,"tgid":89,"ppid":1,"parent":1,"depth":2,"comm":"bd1-thrfork","state":"S","state_raw":8193,"threads":2,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3596537385},
+{"order":7,"pid":93,"tgid":89,"ppid":1,"parent":89,"depth":3,"comm":"bd1-thrworker","state":"S","state_raw":1,"threads":2,"kthread":false,"thread":true,"uid":0,"prio":120,"start_ns":3659964979},
+{"order":8,"pid":95,"tgid":95,"ppid":89,"parent":89,"depth":3,"comm":"bd1-thrchild","state":"S","state_raw":8193,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3669782144},
+{"order":9,"pid":98,"tgid":98,"ppid":89,"parent":89,"depth":3,"comm":"bd1-thrchild","state":"S","state_raw":8193,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3673885693},
+{"order":10,"pid":90,"tgid":90,"ppid":1,"parent":1,"depth":2,"comm":"sh","state":"S","state_raw":1,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3601707206},
+{"order":11,"pid":91,"tgid":91,"ppid":90,"parent":90,"depth":3,"comm":"sh","state":"S","state_raw":1,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3634846987},
+{"order":12,"pid":96,"tgid":96,"ppid":91,"parent":91,"depth":4,"comm":"sh","state":"S","state_raw":8193,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3670811945},
+{"order":13,"pid":100,"tgid":100,"ppid":91,"parent":91,"depth":4,"comm":"sh","state":"S","state_raw":8193,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3680870948},
+{"order":14,"pid":92,"tgid":92,"ppid":90,"parent":90,"depth":3,"comm":"sh","state":"S","state_raw":8193,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3639390415},
+{"order":15,"pid":127,"tgid":127,"ppid":1,"parent":1,"depth":2,"comm":"cat","state":"R","state_raw":0,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":5307241365},
+{"order":16,"pid":2,"tgid":2,"ppid":0,"parent":0,"depth":1,"comm":"kthreadd","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":964722848},
+{"order":17,"pid":3,"tgid":3,"ppid":2,"parent":2,"depth":2,"comm":"pool_workqueue_","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1077722848},
+{"order":18,"pid":4,"tgid":4,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-rcu_g","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1081722848},
+{"order":19,"pid":5,"tgid":5,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-sync_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1083722848},
+{"order":20,"pid":6,"tgid":6,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-kvfre","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1083722848},
+{"order":21,"pid":7,"tgid":7,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-slub_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1084722848},
+{"order":22,"pid":8,"tgid":8,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-netns","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1084722848},
+{"order":23,"pid":9,"tgid":9,"ppid":2,"parent":2,"depth":2,"comm":"kworker/0:0","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1085722848},
+{"order":24,"pid":10,"tgid":10,"ppid":2,"parent":2,"depth":2,"comm":"kworker/0:0H","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1086722848},
+{"order":25,"pid":11,"tgid":11,"ppid":2,"parent":2,"depth":2,"comm":"kworker/0:1","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1088722848},
+{"order":26,"pid":12,"tgid":12,"ppid":2,"parent":2,"depth":2,"comm":"kworker/u8:0","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1088722848},
+{"order":27,"pid":13,"tgid":13,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-mm_pe","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1092722848},
+{"order":28,"pid":14,"tgid":14,"ppid":2,"parent":2,"depth":2,"comm":"ksoftirqd/0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1098722848},
+{"order":29,"pid":15,"tgid":15,"ppid":2,"parent":2,"depth":2,"comm":"pr/ttyS0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1100722848},
+{"order":30,"pid":16,"tgid":16,"ppid":2,"parent":2,"depth":2,"comm":"rcu_preempt","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1102722848},
+{"order":31,"pid":17,"tgid":17,"ppid":2,"parent":2,"depth":2,"comm":"rcu_exp_par_gp_","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1102722848},
+{"order":32,"pid":18,"tgid":18,"ppid":2,"parent":2,"depth":2,"comm":"rcu_exp_gp_kthr","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1103722848},
+{"order":33,"pid":19,"tgid":19,"ppid":2,"parent":2,"depth":2,"comm":"migration/0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":0,"start_ns":1105722848},
+{"order":34,"pid":20,"tgid":20,"ppid":2,"parent":2,"depth":2,"comm":"kprobe-optimize","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1109722848},
+{"order":35,"pid":21,"tgid":21,"ppid":2,"parent":2,"depth":2,"comm":"idle_inject/0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":49,"start_ns":1112722848},
+{"order":36,"pid":22,"tgid":22,"ppid":2,"parent":2,"depth":2,"comm":"cpuhp/0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1122722848},
+{"order":37,"pid":23,"tgid":23,"ppid":2,"parent":2,"depth":2,"comm":"cpuhp/1","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1125722848},
+{"order":38,"pid":24,"tgid":24,"ppid":2,"parent":2,"depth":2,"comm":"idle_inject/1","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":49,"start_ns":1126722848},
+{"order":39,"pid":25,"tgid":25,"ppid":2,"parent":2,"depth":2,"comm":"migration/1","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":0,"start_ns":1127722848},
+{"order":40,"pid":26,"tgid":26,"ppid":2,"parent":2,"depth":2,"comm":"ksoftirqd/1","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1127722848},
+{"order":41,"pid":27,"tgid":27,"ppid":2,"parent":2,"depth":2,"comm":"kworker/1:0","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1128722848},
+{"order":42,"pid":28,"tgid":28,"ppid":2,"parent":2,"depth":2,"comm":"kworker/1:0H","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1128722848},
+{"order":43,"pid":29,"tgid":29,"ppid":2,"parent":2,"depth":2,"comm":"kdevtmpfs","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1254722848},
+{"order":44,"pid":30,"tgid":30,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-inet_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1287722848},
+{"order":45,"pid":31,"tgid":31,"ppid":2,"parent":2,"depth":2,"comm":"rcu_tasks_kthre","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1292722848},
+{"order":46,"pid":32,"tgid":32,"ppid":2,"parent":2,"depth":2,"comm":"rcu_tasks_rude_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1294722848},
+{"order":47,"pid":33,"tgid":33,"ppid":2,"parent":2,"depth":2,"comm":"kauditd","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1351722848},
+{"order":48,"pid":34,"tgid":34,"ppid":2,"parent":2,"depth":2,"comm":"khungtaskd","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1377722848},
+{"order":49,"pid":35,"tgid":35,"ppid":2,"parent":2,"depth":2,"comm":"kworker/u8:1","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1378722848},
+{"order":50,"pid":36,"tgid":36,"ppid":2,"parent":2,"depth":2,"comm":"oom_reaper","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1378722848},
+{"order":51,"pid":37,"tgid":37,"ppid":2,"parent":2,"depth":2,"comm":"kworker/u8:2","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1382722848},
+{"order":52,"pid":38,"tgid":38,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-write","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1397722848},
+{"order":53,"pid":39,"tgid":39,"ppid":2,"parent":2,"depth":2,"comm":"kcompactd0","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1398722848},
+{"order":54,"pid":40,"tgid":40,"ppid":2,"parent":2,"depth":2,"comm":"ksmd","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":125,"start_ns":1405722848},
+{"order":55,"pid":41,"tgid":41,"ppid":2,"parent":2,"depth":2,"comm":"khugepaged","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":139,"start_ns":1421722848},
+{"order":56,"pid":42,"tgid":42,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-kbloc","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1471722848},
+{"order":57,"pid":43,"tgid":43,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-blkcg","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1479722848},
+{"order":58,"pid":44,"tgid":44,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-kinte","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1490722848},
+{"order":59,"pid":45,"tgid":45,"ppid":2,"parent":2,"depth":2,"comm":"irq/9-acpi","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":49,"start_ns":1537722848},
+{"order":60,"pid":46,"tgid":46,"ppid":2,"parent":2,"depth":2,"comm":"kworker/1:1","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1551722848},
+{"order":61,"pid":47,"tgid":47,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-tpm_d","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1684722848},
+{"order":62,"pid":48,"tgid":48,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-ata_s","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1695722848},
+{"order":63,"pid":49,"tgid":49,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-md_bi","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1705722848},
+{"order":64,"pid":50,"tgid":50,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-md_ll","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1708722848},
+{"order":65,"pid":51,"tgid":51,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-md_ll","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1711722848},
+{"order":66,"pid":52,"tgid":52,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-edac-","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1713722848},
+{"order":67,"pid":53,"tgid":53,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-devfr","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1716722848},
+{"order":68,"pid":54,"tgid":54,"ppid":2,"parent":2,"depth":2,"comm":"watchdogd","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":49,"start_ns":1751722848},
+{"order":69,"pid":55,"tgid":55,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-quota","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1799668676},
+{"order":70,"pid":56,"tgid":56,"ppid":2,"parent":2,"depth":2,"comm":"kswapd0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":2010311302},
+{"order":71,"pid":57,"tgid":57,"ppid":2,"parent":2,"depth":2,"comm":"ecryptfs-kthrea","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":2043940893},
+{"order":72,"pid":58,"tgid":58,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-kthro","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2160989068},
+{"order":73,"pid":59,"tgid":59,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-acpi_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2184919959},
+{"order":74,"pid":60,"tgid":60,"ppid":2,"parent":2,"depth":2,"comm":"scsi_eh_0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":2378491319},
+{"order":75,"pid":61,"tgid":61,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-scsi_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2380294148},
+{"order":76,"pid":62,"tgid":62,"ppid":2,"parent":2,"depth":2,"comm":"scsi_eh_1","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":2384687627},
+{"order":77,"pid":63,"tgid":63,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-scsi_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2385809392},
+{"order":78,"pid":64,"tgid":64,"ppid":2,"parent":2,"depth":2,"comm":"kworker/u8:3","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":2389997976},
+{"order":79,"pid":65,"tgid":65,"ppid":2,"parent":2,"depth":2,"comm":"kworker/u8:4","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":2390977927},
+{"order":80,"pid":66,"tgid":66,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-mld","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2455680270},
+{"order":81,"pid":67,"tgid":67,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-ipv6_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2461868229},
+{"order":82,"pid":68,"tgid":68,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-kstrp","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2474450828},
+{"order":83,"pid":70,"tgid":70,"ppid":2,"parent":2,"depth":2,"comm":"kworker/1:1H","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2587684571},
+{"order":84,"pid":71,"tgid":71,"ppid":2,"parent":2,"depth":2,"comm":"kworker/u9:0","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2720658789},
+{"order":85,"pid":82,"tgid":82,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-charg","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2772175855},
+{"order":86,"pid":103,"tgid":103,"ppid":2,"parent":2,"depth":2,"comm":"kworker/0:2","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":4769864669},
+{"order":87,"pid":105,"tgid":105,"ppid":2,"parent":2,"depth":2,"comm":"kworker/1:2","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":4858980592}
+],"linear":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,70,71,82,88,89,90,91,92,95,96,98,100,103,105,127],"count":88,"linear_count":83,"max_depth":4}
+=== SNAP workload END
+=== PS workload BEGIN
+PID   PPID  STAT COMMAND
+    1     0 S    init
+    2     0 SW   kthreadd
+    3     2 SW   pool_workqueue_
+    4     2 IW<  kworker/R-rcu_g
+    5     2 IW<  kworker/R-sync_
+    6     2 IW<  kworker/R-kvfre
+    7     2 IW<  kworker/R-slub_
+    8     2 IW<  kworker/R-netns
+    9     2 IW   kworker/0:0-eve
+   10     2 IW<  kworker/0:0H
+   11     2 IW   kworker/0:1
+   12     2 IW   kworker/u8:0-pm
+   13     2 IW<  kworker/R-mm_pe
+   14     2 SW   ksoftirqd/0
+   15     2 SW<  pr/ttyS0
+   16     2 IW   rcu_preempt
+   17     2 SW   rcu_exp_par_gp_
+   18     2 SW   rcu_exp_gp_kthr
+   19     2 SW   migration/0
+   20     2 SW   kprobe-optimize
+   21     2 SW   idle_inject/0
+   22     2 SW   cpuhp/0
+   23     2 SW   cpuhp/1
+   24     2 SW   idle_inject/1
+   25     2 SW   migration/1
+   26     2 SW   ksoftirqd/1
+   27     2 IW   kworker/1:0-eve
+   28     2 IW<  kworker/1:0H-kb
+   29     2 SW   kdevtmpfs
+   30     2 IW<  kworker/R-inet_
+   31     2 IW   rcu_tasks_kthre
+   32     2 IW   rcu_tasks_rude_
+   33     2 SW   kauditd
+   34     2 SW   khungtaskd
+   35     2 IW   kworker/u8:1-ev
+   36     2 SW   oom_reaper
+   37     2 IW   kworker/u8:2-sc
+   38     2 IW<  kworker/R-write
+   39     2 SW   kcompactd0
+   40     2 SWN  ksmd
+   41     2 SWN  khugepaged
+   42     2 IW<  kworker/R-kbloc
+   43     2 IW<  kworker/R-blkcg
+   44     2 IW<  kworker/R-kinte
+   45     2 SW   irq/9-acpi
+   46     2 IW   kworker/1:1-eve
+   47     2 IW<  kworker/R-tpm_d
+   48     2 IW<  kworker/R-ata_s
+   49     2 IW<  kworker/R-md_bi
+   50     2 IW<  kworker/R-md_ll
+   51     2 IW<  kworker/R-md_ll
+   52     2 IW<  kworker/R-edac-
+   53     2 IW<  kworker/R-devfr
+   54     2 SW   watchdogd
+   55     2 IW<  kworker/R-quota
+   56     2 SW   kswapd0
+   57     2 SW   ecryptfs-kthrea
+   58     2 IW<  kworker/R-kthro
+   59     2 IW<  kworker/R-acpi_
+   60     2 SW   scsi_eh_0
+   61     2 IW<  kworker/R-scsi_
+   62     2 SW   scsi_eh_1
+   63     2 IW<  kworker/R-scsi_
+   64     2 IW   kworker/u8:3-ip
+   65     2 IW   kworker/u8:4
+   66     2 IW<  kworker/R-mld
+   67     2 IW<  kworker/R-ipv6_
+   68     2 IW<  kworker/R-kstrp
+   70     2 IW<  kworker/1:1H
+   71     2 IW<  kworker/u9:0
+   82     2 IW<  kworker/R-charg
+   88     1 S    bd1-threads
+   89     1 S    bd1-thrfork
+   90     1 S    sh
+   91    90 S    sh
+   92    90 S    sh
+   95    89 S    bd1-thrchild
+   96    91 S    sh
+   98    89 S    bd1-thrchild
+  100    91 S    sh
+  103     2 IW   kworker/0:2-eve
+  105     2 IW   kworker/1:2-mm_
+  128     1 R    ps
+=== PS workload END
+RESULT K8 PASS 30 consecutive reads
+=== SNAP stopped BEGIN
+{"source":"kernel:/proc/tasktree","snapshot":32,"time":1793300852,"kernel":"7.0.0-42-generic","show_threads":true,"cap":4096,"truncated":false,"tasks":[
+{"order":0,"pid":0,"tgid":0,"ppid":-1,"parent":-1,"depth":0,"comm":"swapper/0","state":"R","state_raw":0,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":0},
+{"order":1,"pid":1,"tgid":1,"ppid":0,"parent":0,"depth":1,"comm":"init","state":"S","state_raw":1,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":959722848},
+{"order":2,"pid":88,"tgid":88,"ppid":1,"parent":1,"depth":2,"comm":"bd1-threads","state":"S","state_raw":8193,"threads":4,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3594699059},
+{"order":3,"pid":94,"tgid":88,"ppid":1,"parent":88,"depth":3,"comm":"bd1-threads","state":"S","state_raw":8193,"threads":4,"kthread":false,"thread":true,"uid":0,"prio":120,"start_ns":3662337848},
+{"order":4,"pid":97,"tgid":88,"ppid":1,"parent":88,"depth":3,"comm":"bd1-threads","state":"S","state_raw":8193,"threads":4,"kthread":false,"thread":true,"uid":0,"prio":120,"start_ns":3671727192},
+{"order":5,"pid":99,"tgid":88,"ppid":1,"parent":88,"depth":3,"comm":"bd1-threads","state":"S","state_raw":8193,"threads":4,"kthread":false,"thread":true,"uid":0,"prio":120,"start_ns":3677422339},
+{"order":6,"pid":89,"tgid":89,"ppid":1,"parent":1,"depth":2,"comm":"bd1-thrfork","state":"S","state_raw":8193,"threads":2,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3596537385},
+{"order":7,"pid":93,"tgid":89,"ppid":1,"parent":89,"depth":3,"comm":"bd1-thrworker","state":"S","state_raw":1,"threads":2,"kthread":false,"thread":true,"uid":0,"prio":120,"start_ns":3659964979},
+{"order":8,"pid":95,"tgid":95,"ppid":89,"parent":89,"depth":3,"comm":"bd1-thrchild","state":"S","state_raw":8193,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3669782144},
+{"order":9,"pid":98,"tgid":98,"ppid":89,"parent":89,"depth":3,"comm":"bd1-thrchild","state":"S","state_raw":8193,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3673885693},
+{"order":10,"pid":90,"tgid":90,"ppid":1,"parent":1,"depth":2,"comm":"sh","state":"T","state_raw":260,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3601707206},
+{"order":11,"pid":91,"tgid":91,"ppid":90,"parent":90,"depth":3,"comm":"sh","state":"S","state_raw":1,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3634846987},
+{"order":12,"pid":96,"tgid":96,"ppid":91,"parent":91,"depth":4,"comm":"sh","state":"S","state_raw":8193,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3670811945},
+{"order":13,"pid":100,"tgid":100,"ppid":91,"parent":91,"depth":4,"comm":"sh","state":"S","state_raw":8193,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3680870948},
+{"order":14,"pid":92,"tgid":92,"ppid":90,"parent":90,"depth":3,"comm":"sh","state":"S","state_raw":8193,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3639390415},
+{"order":15,"pid":159,"tgid":159,"ppid":1,"parent":1,"depth":2,"comm":"cat","state":"R","state_raw":0,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":5906724635},
+{"order":16,"pid":2,"tgid":2,"ppid":0,"parent":0,"depth":1,"comm":"kthreadd","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":964722848},
+{"order":17,"pid":3,"tgid":3,"ppid":2,"parent":2,"depth":2,"comm":"pool_workqueue_","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1077722848},
+{"order":18,"pid":4,"tgid":4,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-rcu_g","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1081722848},
+{"order":19,"pid":5,"tgid":5,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-sync_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1083722848},
+{"order":20,"pid":6,"tgid":6,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-kvfre","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1083722848},
+{"order":21,"pid":7,"tgid":7,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-slub_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1084722848},
+{"order":22,"pid":8,"tgid":8,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-netns","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1084722848},
+{"order":23,"pid":9,"tgid":9,"ppid":2,"parent":2,"depth":2,"comm":"kworker/0:0","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1085722848},
+{"order":24,"pid":10,"tgid":10,"ppid":2,"parent":2,"depth":2,"comm":"kworker/0:0H","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1086722848},
+{"order":25,"pid":11,"tgid":11,"ppid":2,"parent":2,"depth":2,"comm":"kworker/0:1","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1088722848},
+{"order":26,"pid":12,"tgid":12,"ppid":2,"parent":2,"depth":2,"comm":"kworker/u8:0","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1088722848},
+{"order":27,"pid":13,"tgid":13,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-mm_pe","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1092722848},
+{"order":28,"pid":14,"tgid":14,"ppid":2,"parent":2,"depth":2,"comm":"ksoftirqd/0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1098722848},
+{"order":29,"pid":15,"tgid":15,"ppid":2,"parent":2,"depth":2,"comm":"pr/ttyS0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1100722848},
+{"order":30,"pid":16,"tgid":16,"ppid":2,"parent":2,"depth":2,"comm":"rcu_preempt","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1102722848},
+{"order":31,"pid":17,"tgid":17,"ppid":2,"parent":2,"depth":2,"comm":"rcu_exp_par_gp_","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1102722848},
+{"order":32,"pid":18,"tgid":18,"ppid":2,"parent":2,"depth":2,"comm":"rcu_exp_gp_kthr","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1103722848},
+{"order":33,"pid":19,"tgid":19,"ppid":2,"parent":2,"depth":2,"comm":"migration/0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":0,"start_ns":1105722848},
+{"order":34,"pid":20,"tgid":20,"ppid":2,"parent":2,"depth":2,"comm":"kprobe-optimize","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1109722848},
+{"order":35,"pid":21,"tgid":21,"ppid":2,"parent":2,"depth":2,"comm":"idle_inject/0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":49,"start_ns":1112722848},
+{"order":36,"pid":22,"tgid":22,"ppid":2,"parent":2,"depth":2,"comm":"cpuhp/0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1122722848},
+{"order":37,"pid":23,"tgid":23,"ppid":2,"parent":2,"depth":2,"comm":"cpuhp/1","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1125722848},
+{"order":38,"pid":24,"tgid":24,"ppid":2,"parent":2,"depth":2,"comm":"idle_inject/1","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":49,"start_ns":1126722848},
+{"order":39,"pid":25,"tgid":25,"ppid":2,"parent":2,"depth":2,"comm":"migration/1","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":0,"start_ns":1127722848},
+{"order":40,"pid":26,"tgid":26,"ppid":2,"parent":2,"depth":2,"comm":"ksoftirqd/1","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1127722848},
+{"order":41,"pid":27,"tgid":27,"ppid":2,"parent":2,"depth":2,"comm":"kworker/1:0","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1128722848},
+{"order":42,"pid":28,"tgid":28,"ppid":2,"parent":2,"depth":2,"comm":"kworker/1:0H","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1128722848},
+{"order":43,"pid":29,"tgid":29,"ppid":2,"parent":2,"depth":2,"comm":"kdevtmpfs","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1254722848},
+{"order":44,"pid":30,"tgid":30,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-inet_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1287722848},
+{"order":45,"pid":31,"tgid":31,"ppid":2,"parent":2,"depth":2,"comm":"rcu_tasks_kthre","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1292722848},
+{"order":46,"pid":32,"tgid":32,"ppid":2,"parent":2,"depth":2,"comm":"rcu_tasks_rude_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1294722848},
+{"order":47,"pid":33,"tgid":33,"ppid":2,"parent":2,"depth":2,"comm":"kauditd","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1351722848},
+{"order":48,"pid":34,"tgid":34,"ppid":2,"parent":2,"depth":2,"comm":"khungtaskd","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1377722848},
+{"order":49,"pid":35,"tgid":35,"ppid":2,"parent":2,"depth":2,"comm":"kworker/u8:1","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1378722848},
+{"order":50,"pid":36,"tgid":36,"ppid":2,"parent":2,"depth":2,"comm":"oom_reaper","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1378722848},
+{"order":51,"pid":37,"tgid":37,"ppid":2,"parent":2,"depth":2,"comm":"kworker/u8:2","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1382722848},
+{"order":52,"pid":38,"tgid":38,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-write","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1397722848},
+{"order":53,"pid":39,"tgid":39,"ppid":2,"parent":2,"depth":2,"comm":"kcompactd0","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1398722848},
+{"order":54,"pid":40,"tgid":40,"ppid":2,"parent":2,"depth":2,"comm":"ksmd","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":125,"start_ns":1405722848},
+{"order":55,"pid":41,"tgid":41,"ppid":2,"parent":2,"depth":2,"comm":"khugepaged","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":139,"start_ns":1421722848},
+{"order":56,"pid":42,"tgid":42,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-kbloc","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1471722848},
+{"order":57,"pid":43,"tgid":43,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-blkcg","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1479722848},
+{"order":58,"pid":44,"tgid":44,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-kinte","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1490722848},
+{"order":59,"pid":45,"tgid":45,"ppid":2,"parent":2,"depth":2,"comm":"irq/9-acpi","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":49,"start_ns":1537722848},
+{"order":60,"pid":46,"tgid":46,"ppid":2,"parent":2,"depth":2,"comm":"kworker/1:1","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1551722848},
+{"order":61,"pid":47,"tgid":47,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-tpm_d","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1684722848},
+{"order":62,"pid":48,"tgid":48,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-ata_s","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1695722848},
+{"order":63,"pid":49,"tgid":49,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-md_bi","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1705722848},
+{"order":64,"pid":50,"tgid":50,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-md_ll","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1708722848},
+{"order":65,"pid":51,"tgid":51,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-md_ll","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1711722848},
+{"order":66,"pid":52,"tgid":52,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-edac-","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1713722848},
+{"order":67,"pid":53,"tgid":53,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-devfr","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1716722848},
+{"order":68,"pid":54,"tgid":54,"ppid":2,"parent":2,"depth":2,"comm":"watchdogd","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":49,"start_ns":1751722848},
+{"order":69,"pid":55,"tgid":55,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-quota","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1799668676},
+{"order":70,"pid":56,"tgid":56,"ppid":2,"parent":2,"depth":2,"comm":"kswapd0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":2010311302},
+{"order":71,"pid":57,"tgid":57,"ppid":2,"parent":2,"depth":2,"comm":"ecryptfs-kthrea","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":2043940893},
+{"order":72,"pid":58,"tgid":58,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-kthro","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2160989068},
+{"order":73,"pid":59,"tgid":59,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-acpi_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2184919959},
+{"order":74,"pid":60,"tgid":60,"ppid":2,"parent":2,"depth":2,"comm":"scsi_eh_0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":2378491319},
+{"order":75,"pid":61,"tgid":61,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-scsi_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2380294148},
+{"order":76,"pid":62,"tgid":62,"ppid":2,"parent":2,"depth":2,"comm":"scsi_eh_1","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":2384687627},
+{"order":77,"pid":63,"tgid":63,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-scsi_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2385809392},
+{"order":78,"pid":64,"tgid":64,"ppid":2,"parent":2,"depth":2,"comm":"kworker/u8:3","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":2389997976},
+{"order":79,"pid":65,"tgid":65,"ppid":2,"parent":2,"depth":2,"comm":"kworker/u8:4","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":2390977927},
+{"order":80,"pid":66,"tgid":66,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-mld","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2455680270},
+{"order":81,"pid":67,"tgid":67,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-ipv6_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2461868229},
+{"order":82,"pid":68,"tgid":68,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-kstrp","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2474450828},
+{"order":83,"pid":70,"tgid":70,"ppid":2,"parent":2,"depth":2,"comm":"kworker/1:1H","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2587684571},
+{"order":84,"pid":71,"tgid":71,"ppid":2,"parent":2,"depth":2,"comm":"kworker/u9:0","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2720658789},
+{"order":85,"pid":82,"tgid":82,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-charg","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2772175855},
+{"order":86,"pid":103,"tgid":103,"ppid":2,"parent":2,"depth":2,"comm":"kworker/0:2","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":4769864669},
+{"order":87,"pid":105,"tgid":105,"ppid":2,"parent":2,"depth":2,"comm":"kworker/1:2","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":4858980592}
+],"linear":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,70,71,82,88,89,90,91,92,95,96,98,100,103,105,159],"count":88,"linear_count":83,"max_depth":4}
+=== SNAP stopped END
+RESULT K9 PASS runtime max_tasks=5 rejected
+=== SNAP capped BEGIN
+{"source":"kernel:/proc/tasktree","snapshot":33,"time":1793300853,"kernel":"7.0.0-42-generic","show_threads":true,"cap":16,"truncated":true,"tasks":[
+{"order":0,"pid":0,"tgid":0,"ppid":-1,"parent":-1,"depth":0,"comm":"swapper/0","state":"R","state_raw":0,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":0},
+{"order":1,"pid":1,"tgid":1,"ppid":0,"parent":0,"depth":1,"comm":"init","state":"S","state_raw":1,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":959722848},
+{"order":2,"pid":88,"tgid":88,"ppid":1,"parent":1,"depth":2,"comm":"bd1-threads","state":"S","state_raw":8193,"threads":4,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3594699059},
+{"order":3,"pid":94,"tgid":88,"ppid":1,"parent":88,"depth":3,"comm":"bd1-threads","state":"S","state_raw":8193,"threads":4,"kthread":false,"thread":true,"uid":0,"prio":120,"start_ns":3662337848},
+{"order":4,"pid":97,"tgid":88,"ppid":1,"parent":88,"depth":3,"comm":"bd1-threads","state":"S","state_raw":8193,"threads":4,"kthread":false,"thread":true,"uid":0,"prio":120,"start_ns":3671727192},
+{"order":5,"pid":99,"tgid":88,"ppid":1,"parent":88,"depth":3,"comm":"bd1-threads","state":"S","state_raw":8193,"threads":4,"kthread":false,"thread":true,"uid":0,"prio":120,"start_ns":3677422339},
+{"order":6,"pid":89,"tgid":89,"ppid":1,"parent":1,"depth":2,"comm":"bd1-thrfork","state":"S","state_raw":8193,"threads":2,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3596537385},
+{"order":7,"pid":93,"tgid":89,"ppid":1,"parent":89,"depth":3,"comm":"bd1-thrworker","state":"S","state_raw":1,"threads":2,"kthread":false,"thread":true,"uid":0,"prio":120,"start_ns":3659964979},
+{"order":8,"pid":95,"tgid":95,"ppid":89,"parent":89,"depth":3,"comm":"bd1-thrchild","state":"S","state_raw":8193,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3669782144},
+{"order":9,"pid":98,"tgid":98,"ppid":89,"parent":89,"depth":3,"comm":"bd1-thrchild","state":"S","state_raw":8193,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3673885693},
+{"order":10,"pid":90,"tgid":90,"ppid":1,"parent":1,"depth":2,"comm":"sh","state":"S","state_raw":1,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3601707206},
+{"order":11,"pid":91,"tgid":91,"ppid":90,"parent":90,"depth":3,"comm":"sh","state":"S","state_raw":1,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3634846987},
+{"order":12,"pid":96,"tgid":96,"ppid":91,"parent":91,"depth":4,"comm":"sh","state":"S","state_raw":8193,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3670811945},
+{"order":13,"pid":100,"tgid":100,"ppid":91,"parent":91,"depth":4,"comm":"sh","state":"S","state_raw":8193,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3680870948},
+{"order":14,"pid":92,"tgid":92,"ppid":90,"parent":90,"depth":3,"comm":"sh","state":"S","state_raw":8193,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3639390415},
+{"order":15,"pid":160,"tgid":160,"ppid":1,"parent":1,"depth":2,"comm":"cat","state":"R","state_raw":0,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":6024378669}
+],"linear":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],"count":16,"linear_count":16,"max_depth":4}
+=== SNAP capped END
+=== SNAP old BEGIN
+{"source":"kernel:/proc/tasktree","snapshot":1,"time":1793300853,"kernel":"7.0.0-42-generic","show_threads":true,"tasks":[
+{"order":0,"pid":0,"tgid":0,"ppid":-1,"depth":0,"comm":"swapper/0","state":"R","state_raw":0,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":0},
+{"order":1,"pid":1,"tgid":1,"ppid":0,"depth":1,"comm":"init","state":"S","state_raw":1,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":959722848},
+{"order":2,"pid":88,"tgid":88,"ppid":1,"depth":2,"comm":"bd1-threads","state":"S","state_raw":8193,"threads":4,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3594699059},
+{"order":3,"pid":94,"tgid":88,"ppid":88,"depth":3,"comm":"bd1-threads","state":"S","state_raw":8193,"threads":4,"kthread":false,"thread":true,"uid":0,"prio":120,"start_ns":3662337848},
+{"order":4,"pid":97,"tgid":88,"ppid":88,"depth":3,"comm":"bd1-threads","state":"S","state_raw":8193,"threads":4,"kthread":false,"thread":true,"uid":0,"prio":120,"start_ns":3671727192},
+{"order":5,"pid":99,"tgid":88,"ppid":88,"depth":3,"comm":"bd1-threads","state":"S","state_raw":8193,"threads":4,"kthread":false,"thread":true,"uid":0,"prio":120,"start_ns":3677422339},
+{"order":6,"pid":89,"tgid":89,"ppid":1,"depth":2,"comm":"bd1-thrfork","state":"S","state_raw":8193,"threads":2,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3596537385},
+{"order":7,"pid":93,"tgid":89,"ppid":89,"depth":3,"comm":"bd1-thrworker","state":"S","state_raw":1,"threads":2,"kthread":false,"thread":true,"uid":0,"prio":120,"start_ns":3659964979},
+{"order":8,"pid":90,"tgid":90,"ppid":1,"depth":2,"comm":"sh","state":"S","state_raw":1,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3601707206},
+{"order":9,"pid":91,"tgid":91,"ppid":90,"depth":3,"comm":"sh","state":"S","state_raw":1,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3634846987},
+{"order":10,"pid":96,"tgid":96,"ppid":91,"depth":4,"comm":"sh","state":"S","state_raw":8193,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3670811945},
+{"order":11,"pid":100,"tgid":100,"ppid":91,"depth":4,"comm":"sh","state":"S","state_raw":8193,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3680870948},
+{"order":12,"pid":92,"tgid":92,"ppid":90,"depth":3,"comm":"sh","state":"S","state_raw":8193,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3639390415},
+{"order":13,"pid":163,"tgid":163,"ppid":1,"depth":2,"comm":"cat","state":"R","state_raw":0,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":6092530433},
+{"order":14,"pid":2,"tgid":2,"ppid":0,"depth":1,"comm":"kthreadd","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":964722848},
+{"order":15,"pid":3,"tgid":3,"ppid":2,"depth":2,"comm":"pool_workqueue_","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1077722848},
+{"order":16,"pid":4,"tgid":4,"ppid":2,"depth":2,"comm":"kworker/R-rcu_g","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1081722848},
+{"order":17,"pid":5,"tgid":5,"ppid":2,"depth":2,"comm":"kworker/R-sync_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1083722848},
+{"order":18,"pid":6,"tgid":6,"ppid":2,"depth":2,"comm":"kworker/R-kvfre","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1083722848},
+{"order":19,"pid":7,"tgid":7,"ppid":2,"depth":2,"comm":"kworker/R-slub_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1084722848},
+{"order":20,"pid":8,"tgid":8,"ppid":2,"depth":2,"comm":"kworker/R-netns","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1084722848},
+{"order":21,"pid":9,"tgid":9,"ppid":2,"depth":2,"comm":"kworker/0:0","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1085722848},
+{"order":22,"pid":10,"tgid":10,"ppid":2,"depth":2,"comm":"kworker/0:0H","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1086722848},
+{"order":23,"pid":11,"tgid":11,"ppid":2,"depth":2,"comm":"kworker/0:1","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1088722848},
+{"order":24,"pid":12,"tgid":12,"ppid":2,"depth":2,"comm":"kworker/u8:0","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1088722848},
+{"order":25,"pid":13,"tgid":13,"ppid":2,"depth":2,"comm":"kworker/R-mm_pe","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1092722848},
+{"order":26,"pid":14,"tgid":14,"ppid":2,"depth":2,"comm":"ksoftirqd/0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1098722848},
+{"order":27,"pid":15,"tgid":15,"ppid":2,"depth":2,"comm":"pr/ttyS0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1100722848},
+{"order":28,"pid":16,"tgid":16,"ppid":2,"depth":2,"comm":"rcu_preempt","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1102722848},
+{"order":29,"pid":17,"tgid":17,"ppid":2,"depth":2,"comm":"rcu_exp_par_gp_","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1102722848},
+{"order":30,"pid":18,"tgid":18,"ppid":2,"depth":2,"comm":"rcu_exp_gp_kthr","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1103722848},
+{"order":31,"pid":19,"tgid":19,"ppid":2,"depth":2,"comm":"migration/0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":0,"start_ns":1105722848},
+{"order":32,"pid":20,"tgid":20,"ppid":2,"depth":2,"comm":"kprobe-optimize","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1109722848},
+{"order":33,"pid":21,"tgid":21,"ppid":2,"depth":2,"comm":"idle_inject/0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":49,"start_ns":1112722848},
+{"order":34,"pid":22,"tgid":22,"ppid":2,"depth":2,"comm":"cpuhp/0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1122722848},
+{"order":35,"pid":23,"tgid":23,"ppid":2,"depth":2,"comm":"cpuhp/1","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1125722848},
+{"order":36,"pid":24,"tgid":24,"ppid":2,"depth":2,"comm":"idle_inject/1","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":49,"start_ns":1126722848},
+{"order":37,"pid":25,"tgid":25,"ppid":2,"depth":2,"comm":"migration/1","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":0,"start_ns":1127722848},
+{"order":38,"pid":26,"tgid":26,"ppid":2,"depth":2,"comm":"ksoftirqd/1","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1127722848},
+{"order":39,"pid":27,"tgid":27,"ppid":2,"depth":2,"comm":"kworker/1:0","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1128722848},
+{"order":40,"pid":28,"tgid":28,"ppid":2,"depth":2,"comm":"kworker/1:0H","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1128722848},
+{"order":41,"pid":29,"tgid":29,"ppid":2,"depth":2,"comm":"kdevtmpfs","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1254722848},
+{"order":42,"pid":30,"tgid":30,"ppid":2,"depth":2,"comm":"kworker/R-inet_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1287722848},
+{"order":43,"pid":31,"tgid":31,"ppid":2,"depth":2,"comm":"rcu_tasks_kthre","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1292722848},
+{"order":44,"pid":32,"tgid":32,"ppid":2,"depth":2,"comm":"rcu_tasks_rude_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1294722848},
+{"order":45,"pid":33,"tgid":33,"ppid":2,"depth":2,"comm":"kauditd","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1351722848},
+{"order":46,"pid":34,"tgid":34,"ppid":2,"depth":2,"comm":"khungtaskd","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1377722848},
+{"order":47,"pid":35,"tgid":35,"ppid":2,"depth":2,"comm":"kworker/u8:1","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1378722848},
+{"order":48,"pid":36,"tgid":36,"ppid":2,"depth":2,"comm":"oom_reaper","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1378722848},
+{"order":49,"pid":37,"tgid":37,"ppid":2,"depth":2,"comm":"kworker/u8:2","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1382722848},
+{"order":50,"pid":38,"tgid":38,"ppid":2,"depth":2,"comm":"kworker/R-write","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1397722848},
+{"order":51,"pid":39,"tgid":39,"ppid":2,"depth":2,"comm":"kcompactd0","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1398722848},
+{"order":52,"pid":40,"tgid":40,"ppid":2,"depth":2,"comm":"ksmd","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":125,"start_ns":1405722848},
+{"order":53,"pid":41,"tgid":41,"ppid":2,"depth":2,"comm":"khugepaged","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":139,"start_ns":1421722848},
+{"order":54,"pid":42,"tgid":42,"ppid":2,"depth":2,"comm":"kworker/R-kbloc","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1471722848},
+{"order":55,"pid":43,"tgid":43,"ppid":2,"depth":2,"comm":"kworker/R-blkcg","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1479722848},
+{"order":56,"pid":44,"tgid":44,"ppid":2,"depth":2,"comm":"kworker/R-kinte","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1490722848},
+{"order":57,"pid":45,"tgid":45,"ppid":2,"depth":2,"comm":"irq/9-acpi","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":49,"start_ns":1537722848},
+{"order":58,"pid":46,"tgid":46,"ppid":2,"depth":2,"comm":"kworker/1:1","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1551722848},
+{"order":59,"pid":47,"tgid":47,"ppid":2,"depth":2,"comm":"kworker/R-tpm_d","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1684722848},
+{"order":60,"pid":48,"tgid":48,"ppid":2,"depth":2,"comm":"kworker/R-ata_s","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1695722848},
+{"order":61,"pid":49,"tgid":49,"ppid":2,"depth":2,"comm":"kworker/R-md_bi","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1705722848},
+{"order":62,"pid":50,"tgid":50,"ppid":2,"depth":2,"comm":"kworker/R-md_ll","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1708722848},
+{"order":63,"pid":51,"tgid":51,"ppid":2,"depth":2,"comm":"kworker/R-md_ll","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1711722848},
+{"order":64,"pid":52,"tgid":52,"ppid":2,"depth":2,"comm":"kworker/R-edac-","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1713722848},
+{"order":65,"pid":53,"tgid":53,"ppid":2,"depth":2,"comm":"kworker/R-devfr","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1716722848},
+{"order":66,"pid":54,"tgid":54,"ppid":2,"depth":2,"comm":"watchdogd","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":49,"start_ns":1751722848},
+{"order":67,"pid":55,"tgid":55,"ppid":2,"depth":2,"comm":"kworker/R-quota","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1799668676},
+{"order":68,"pid":56,"tgid":56,"ppid":2,"depth":2,"comm":"kswapd0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":2010311302},
+{"order":69,"pid":57,"tgid":57,"ppid":2,"depth":2,"comm":"ecryptfs-kthrea","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":2043940893},
+{"order":70,"pid":58,"tgid":58,"ppid":2,"depth":2,"comm":"kworker/R-kthro","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2160989068},
+{"order":71,"pid":59,"tgid":59,"ppid":2,"depth":2,"comm":"kworker/R-acpi_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2184919959},
+{"order":72,"pid":60,"tgid":60,"ppid":2,"depth":2,"comm":"scsi_eh_0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":2378491319},
+{"order":73,"pid":61,"tgid":61,"ppid":2,"depth":2,"comm":"kworker/R-scsi_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2380294148},
+{"order":74,"pid":62,"tgid":62,"ppid":2,"depth":2,"comm":"scsi_eh_1","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":2384687627},
+{"order":75,"pid":63,"tgid":63,"ppid":2,"depth":2,"comm":"kworker/R-scsi_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2385809392},
+{"order":76,"pid":64,"tgid":64,"ppid":2,"depth":2,"comm":"kworker/u8:3","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":2389997976},
+{"order":77,"pid":65,"tgid":65,"ppid":2,"depth":2,"comm":"kworker/u8:4","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":2390977927},
+{"order":78,"pid":66,"tgid":66,"ppid":2,"depth":2,"comm":"kworker/R-mld","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2455680270},
+{"order":79,"pid":67,"tgid":67,"ppid":2,"depth":2,"comm":"kworker/R-ipv6_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2461868229},
+{"order":80,"pid":68,"tgid":68,"ppid":2,"depth":2,"comm":"kworker/R-kstrp","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2474450828},
+{"order":81,"pid":70,"tgid":70,"ppid":2,"depth":2,"comm":"kworker/1:1H","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2587684571},
+{"order":82,"pid":71,"tgid":71,"ppid":2,"depth":2,"comm":"kworker/u9:0","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2720658789},
+{"order":83,"pid":82,"tgid":82,"ppid":2,"depth":2,"comm":"kworker/R-charg","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2772175855},
+{"order":84,"pid":103,"tgid":103,"ppid":2,"depth":2,"comm":"kworker/0:2","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":4769864669},
+{"order":85,"pid":105,"tgid":105,"ppid":2,"depth":2,"comm":"kworker/1:2","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":4858980592}
+],"count":86,"max_depth":4}
+=== SNAP old END
+=== SNAP after BEGIN
+{"source":"kernel:/proc/tasktree","snapshot":1,"time":1793300853,"kernel":"7.0.0-42-generic","show_threads":true,"cap":4096,"truncated":false,"tasks":[
+{"order":0,"pid":0,"tgid":0,"ppid":-1,"parent":-1,"depth":0,"comm":"swapper/0","state":"R","state_raw":0,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":0},
+{"order":1,"pid":1,"tgid":1,"ppid":0,"parent":0,"depth":1,"comm":"init","state":"S","state_raw":1,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":959722848},
+{"order":2,"pid":91,"tgid":91,"ppid":1,"parent":1,"depth":2,"comm":"sh","state":"S","state_raw":1,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3634846987},
+{"order":3,"pid":96,"tgid":96,"ppid":91,"parent":91,"depth":3,"comm":"sh","state":"S","state_raw":8193,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3670811945},
+{"order":4,"pid":100,"tgid":100,"ppid":91,"parent":91,"depth":3,"comm":"sh","state":"S","state_raw":8193,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3680870948},
+{"order":5,"pid":92,"tgid":92,"ppid":1,"parent":1,"depth":2,"comm":"sh","state":"S","state_raw":8193,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3639390415},
+{"order":6,"pid":171,"tgid":171,"ppid":1,"parent":1,"depth":2,"comm":"cat","state":"R","state_raw":0,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":6263941396},
+{"order":7,"pid":2,"tgid":2,"ppid":0,"parent":0,"depth":1,"comm":"kthreadd","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":964722848},
+{"order":8,"pid":3,"tgid":3,"ppid":2,"parent":2,"depth":2,"comm":"pool_workqueue_","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1077722848},
+{"order":9,"pid":4,"tgid":4,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-rcu_g","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1081722848},
+{"order":10,"pid":5,"tgid":5,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-sync_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1083722848},
+{"order":11,"pid":6,"tgid":6,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-kvfre","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1083722848},
+{"order":12,"pid":7,"tgid":7,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-slub_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1084722848},
+{"order":13,"pid":8,"tgid":8,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-netns","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1084722848},
+{"order":14,"pid":9,"tgid":9,"ppid":2,"parent":2,"depth":2,"comm":"kworker/0:0","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1085722848},
+{"order":15,"pid":10,"tgid":10,"ppid":2,"parent":2,"depth":2,"comm":"kworker/0:0H","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1086722848},
+{"order":16,"pid":11,"tgid":11,"ppid":2,"parent":2,"depth":2,"comm":"kworker/0:1","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1088722848},
+{"order":17,"pid":12,"tgid":12,"ppid":2,"parent":2,"depth":2,"comm":"kworker/u8:0","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1088722848},
+{"order":18,"pid":13,"tgid":13,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-mm_pe","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1092722848},
+{"order":19,"pid":14,"tgid":14,"ppid":2,"parent":2,"depth":2,"comm":"ksoftirqd/0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1098722848},
+{"order":20,"pid":15,"tgid":15,"ppid":2,"parent":2,"depth":2,"comm":"pr/ttyS0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1100722848},
+{"order":21,"pid":16,"tgid":16,"ppid":2,"parent":2,"depth":2,"comm":"rcu_preempt","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1102722848},
+{"order":22,"pid":17,"tgid":17,"ppid":2,"parent":2,"depth":2,"comm":"rcu_exp_par_gp_","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1102722848},
+{"order":23,"pid":18,"tgid":18,"ppid":2,"parent":2,"depth":2,"comm":"rcu_exp_gp_kthr","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1103722848},
+{"order":24,"pid":19,"tgid":19,"ppid":2,"parent":2,"depth":2,"comm":"migration/0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":0,"start_ns":1105722848},
+{"order":25,"pid":20,"tgid":20,"ppid":2,"parent":2,"depth":2,"comm":"kprobe-optimize","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1109722848},
+{"order":26,"pid":21,"tgid":21,"ppid":2,"parent":2,"depth":2,"comm":"idle_inject/0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":49,"start_ns":1112722848},
+{"order":27,"pid":22,"tgid":22,"ppid":2,"parent":2,"depth":2,"comm":"cpuhp/0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1122722848},
+{"order":28,"pid":23,"tgid":23,"ppid":2,"parent":2,"depth":2,"comm":"cpuhp/1","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1125722848},
+{"order":29,"pid":24,"tgid":24,"ppid":2,"parent":2,"depth":2,"comm":"idle_inject/1","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":49,"start_ns":1126722848},
+{"order":30,"pid":25,"tgid":25,"ppid":2,"parent":2,"depth":2,"comm":"migration/1","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":0,"start_ns":1127722848},
+{"order":31,"pid":26,"tgid":26,"ppid":2,"parent":2,"depth":2,"comm":"ksoftirqd/1","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1127722848},
+{"order":32,"pid":27,"tgid":27,"ppid":2,"parent":2,"depth":2,"comm":"kworker/1:0","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1128722848},
+{"order":33,"pid":28,"tgid":28,"ppid":2,"parent":2,"depth":2,"comm":"kworker/1:0H","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1128722848},
+{"order":34,"pid":29,"tgid":29,"ppid":2,"parent":2,"depth":2,"comm":"kdevtmpfs","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1254722848},
+{"order":35,"pid":30,"tgid":30,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-inet_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1287722848},
+{"order":36,"pid":31,"tgid":31,"ppid":2,"parent":2,"depth":2,"comm":"rcu_tasks_kthre","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1292722848},
+{"order":37,"pid":32,"tgid":32,"ppid":2,"parent":2,"depth":2,"comm":"rcu_tasks_rude_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1294722848},
+{"order":38,"pid":33,"tgid":33,"ppid":2,"parent":2,"depth":2,"comm":"kauditd","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1351722848},
+{"order":39,"pid":34,"tgid":34,"ppid":2,"parent":2,"depth":2,"comm":"khungtaskd","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1377722848},
+{"order":40,"pid":35,"tgid":35,"ppid":2,"parent":2,"depth":2,"comm":"kworker/u8:1","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1378722848},
+{"order":41,"pid":36,"tgid":36,"ppid":2,"parent":2,"depth":2,"comm":"oom_reaper","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1378722848},
+{"order":42,"pid":37,"tgid":37,"ppid":2,"parent":2,"depth":2,"comm":"kworker/u8:2","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1382722848},
+{"order":43,"pid":38,"tgid":38,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-write","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1397722848},
+{"order":44,"pid":39,"tgid":39,"ppid":2,"parent":2,"depth":2,"comm":"kcompactd0","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1398722848},
+{"order":45,"pid":40,"tgid":40,"ppid":2,"parent":2,"depth":2,"comm":"ksmd","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":125,"start_ns":1405722848},
+{"order":46,"pid":41,"tgid":41,"ppid":2,"parent":2,"depth":2,"comm":"khugepaged","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":139,"start_ns":1421722848},
+{"order":47,"pid":42,"tgid":42,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-kbloc","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1471722848},
+{"order":48,"pid":43,"tgid":43,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-blkcg","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1479722848},
+{"order":49,"pid":44,"tgid":44,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-kinte","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1490722848},
+{"order":50,"pid":45,"tgid":45,"ppid":2,"parent":2,"depth":2,"comm":"irq/9-acpi","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":49,"start_ns":1537722848},
+{"order":51,"pid":46,"tgid":46,"ppid":2,"parent":2,"depth":2,"comm":"kworker/1:1","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1551722848},
+{"order":52,"pid":47,"tgid":47,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-tpm_d","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1684722848},
+{"order":53,"pid":48,"tgid":48,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-ata_s","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1695722848},
+{"order":54,"pid":49,"tgid":49,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-md_bi","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1705722848},
+{"order":55,"pid":50,"tgid":50,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-md_ll","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1708722848},
+{"order":56,"pid":51,"tgid":51,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-md_ll","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1711722848},
+{"order":57,"pid":52,"tgid":52,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-edac-","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1713722848},
+{"order":58,"pid":53,"tgid":53,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-devfr","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1716722848},
+{"order":59,"pid":54,"tgid":54,"ppid":2,"parent":2,"depth":2,"comm":"watchdogd","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":49,"start_ns":1751722848},
+{"order":60,"pid":55,"tgid":55,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-quota","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1799668676},
+{"order":61,"pid":56,"tgid":56,"ppid":2,"parent":2,"depth":2,"comm":"kswapd0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":2010311302},
+{"order":62,"pid":57,"tgid":57,"ppid":2,"parent":2,"depth":2,"comm":"ecryptfs-kthrea","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":2043940893},
+{"order":63,"pid":58,"tgid":58,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-kthro","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2160989068},
+{"order":64,"pid":59,"tgid":59,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-acpi_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2184919959},
+{"order":65,"pid":60,"tgid":60,"ppid":2,"parent":2,"depth":2,"comm":"scsi_eh_0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":2378491319},
+{"order":66,"pid":61,"tgid":61,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-scsi_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2380294148},
+{"order":67,"pid":62,"tgid":62,"ppid":2,"parent":2,"depth":2,"comm":"scsi_eh_1","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":2384687627},
+{"order":68,"pid":63,"tgid":63,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-scsi_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2385809392},
+{"order":69,"pid":64,"tgid":64,"ppid":2,"parent":2,"depth":2,"comm":"kworker/u8:3","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":2389997976},
+{"order":70,"pid":65,"tgid":65,"ppid":2,"parent":2,"depth":2,"comm":"kworker/u8:4","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":2390977927},
+{"order":71,"pid":66,"tgid":66,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-mld","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2455680270},
+{"order":72,"pid":67,"tgid":67,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-ipv6_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2461868229},
+{"order":73,"pid":68,"tgid":68,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-kstrp","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2474450828},
+{"order":74,"pid":70,"tgid":70,"ppid":2,"parent":2,"depth":2,"comm":"kworker/1:1H","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2587684571},
+{"order":75,"pid":71,"tgid":71,"ppid":2,"parent":2,"depth":2,"comm":"kworker/u9:0","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2720658789},
+{"order":76,"pid":82,"tgid":82,"ppid":2,"parent":2,"depth":2,"comm":"kworker/R-charg","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2772175855},
+{"order":77,"pid":103,"tgid":103,"ppid":2,"parent":2,"depth":2,"comm":"kworker/0:2","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":4769864669},
+{"order":78,"pid":105,"tgid":105,"ppid":2,"parent":2,"depth":2,"comm":"kworker/1:2","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":4858980592}
+],"linear":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,70,71,82,91,92,96,100,103,105,171],"count":79,"linear_count":78,"max_depth":3}
+=== SNAP after END
+RESULT K10 PASS rmmod removed /proc/tasktree
+RESULT K11 PASS no BUG/Oops/WARNING
+=== DONE
+[    6.498721] reboot: Power down

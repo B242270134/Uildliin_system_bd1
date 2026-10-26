@@ -1,0 +1,102 @@
+c[?7l[2J[0mSeaBIOS (version 1.16.3-debian-1.16.3-2)
+
+
+iPXE (https://ipxe.org) 00:03.0 CA00 PCI2.10 PnP PMM+3EFCAE00+3EF0AE00 CA00
+Press Ctrl-B to configure iPXE (PCI 00:03.0)...                                                                               
+
+
+Booting from ROM..c[?7l[2J=== T1 invalid param: insmod tasktree.ko show_threads=abc
+insmod: can't insert '/mod/tasktree.ko': Invalid argument
+exit=22
+[    3.788821] tasktree: `abc' invalid for parameter `show_threads'
+[    3.818858] tasktree: `abc' invalid for parameter `show_threads'
+=== T2 load with show_threads=1
+exit=0
+=== T3 double insmod
+insmod: can't insert '/mod/tasktree.ko': File exists
+exit=17
+=== THREADS_BEGIN
+{"source":"kernel:/proc/tasktree","snapshot":1,"time":1793290079,"kernel":"6.8.0-31-generic","show_threads":true,"tasks":[
+{"order":0,"pid":0,"tgid":0,"ppid":-1,"depth":0,"comm":"swapper/0","state":"R","state_raw":0,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":0},
+{"order":1,"pid":1,"tgid":1,"ppid":0,"depth":1,"comm":"init","state":"S","state_raw":1,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":927638661},
+{"order":2,"pid":94,"tgid":94,"ppid":1,"depth":2,"comm":"bd1-threads","state":"S","state_raw":8193,"threads":4,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":3878332441},
+{"order":3,"pid":95,"tgid":94,"ppid":94,"depth":3,"comm":"bd1-threads","state":"S","state_raw":8193,"threads":4,"kthread":false,"thread":true,"uid":0,"prio":120,"start_ns":3916907431},
+{"order":4,"pid":96,"tgid":94,"ppid":94,"depth":3,"comm":"bd1-threads","state":"S","state_raw":8193,"threads":4,"kthread":false,"thread":true,"uid":0,"prio":120,"start_ns":3919805521},
+{"order":5,"pid":97,"tgid":94,"ppid":94,"depth":3,"comm":"bd1-threads","state":"S","state_raw":8193,"threads":4,"kthread":false,"thread":true,"uid":0,"prio":120,"start_ns":3920894611},
+{"order":6,"pid":100,"tgid":100,"ppid":1,"depth":2,"comm":"cat","state":"R","state_raw":0,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":4925574831},
+{"order":7,"pid":2,"tgid":2,"ppid":0,"depth":1,"comm":"kthreadd","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":932638661},
+{"order":8,"pid":3,"tgid":3,"ppid":2,"depth":2,"comm":"pool_workqueue_","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1044638661},
+{"order":9,"pid":4,"tgid":4,"ppid":2,"depth":2,"comm":"kworker/R-rcu_g","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1046638661},
+{"order":10,"pid":5,"tgid":5,"ppid":2,"depth":2,"comm":"kworker/R-rcu_p","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1048638661},
+{"order":11,"pid":6,"tgid":6,"ppid":2,"depth":2,"comm":"kworker/R-slub_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1048638661},
+{"order":12,"pid":7,"tgid":7,"ppid":2,"depth":2,"comm":"kworker/R-netns","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1048638661},
+{"order":13,"pid":8,"tgid":8,"ppid":2,"depth":2,"comm":"kworker/0:0","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1048638661},
+{"order":14,"pid":9,"tgid":9,"ppid":2,"depth":2,"comm":"kworker/0:0H","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1049638661},
+{"order":15,"pid":10,"tgid":10,"ppid":2,"depth":2,"comm":"kworker/0:1","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1049638661},
+{"order":16,"pid":11,"tgid":11,"ppid":2,"depth":2,"comm":"kworker/u4:0","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1051638661},
+{"order":17,"pid":12,"tgid":12,"ppid":2,"depth":2,"comm":"kworker/R-mm_pe","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1051638661},
+{"order":18,"pid":13,"tgid":13,"ppid":2,"depth":2,"comm":"rcu_tasks_kthre","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1052638661},
+{"order":19,"pid":14,"tgid":14,"ppid":2,"depth":2,"comm":"rcu_tasks_rude_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1053638661},
+{"order":20,"pid":15,"tgid":15,"ppid":2,"depth":2,"comm":"rcu_tasks_trace","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1054638661},
+{"order":21,"pid":16,"tgid":16,"ppid":2,"depth":2,"comm":"ksoftirqd/0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1057638661},
+{"order":22,"pid":17,"tgid":17,"ppid":2,"depth":2,"comm":"rcu_preempt","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1059638661},
+{"order":23,"pid":18,"tgid":18,"ppid":2,"depth":2,"comm":"migration/0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":0,"start_ns":1061638661},
+{"order":24,"pid":19,"tgid":19,"ppid":2,"depth":2,"comm":"idle_inject/0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":49,"start_ns":1068638661},
+{"order":25,"pid":20,"tgid":20,"ppid":2,"depth":2,"comm":"cpuhp/0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1075638661},
+{"order":26,"pid":21,"tgid":21,"ppid":2,"depth":2,"comm":"cpuhp/1","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1078638661},
+{"order":27,"pid":22,"tgid":22,"ppid":2,"depth":2,"comm":"idle_inject/1","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":49,"start_ns":1079638661},
+{"order":28,"pid":23,"tgid":23,"ppid":2,"depth":2,"comm":"migration/1","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":0,"start_ns":1079638661},
+{"order":29,"pid":24,"tgid":24,"ppid":2,"depth":2,"comm":"ksoftirqd/1","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1079638661},
+{"order":30,"pid":25,"tgid":25,"ppid":2,"depth":2,"comm":"kworker/1:0","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1081638661},
+{"order":31,"pid":26,"tgid":26,"ppid":2,"depth":2,"comm":"kworker/1:0H","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1081638661},
+{"order":32,"pid":27,"tgid":27,"ppid":2,"depth":2,"comm":"kdevtmpfs","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1179638661},
+{"order":33,"pid":28,"tgid":28,"ppid":2,"depth":2,"comm":"kworker/R-inet_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1221638661},
+{"order":34,"pid":29,"tgid":29,"ppid":2,"depth":2,"comm":"kworker/u4:1","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1238638661},
+{"order":35,"pid":30,"tgid":30,"ppid":2,"depth":2,"comm":"kauditd","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1275638661},
+{"order":36,"pid":31,"tgid":31,"ppid":2,"depth":2,"comm":"kworker/1:1","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1290638661},
+{"order":37,"pid":32,"tgid":32,"ppid":2,"depth":2,"comm":"khungtaskd","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1307638661},
+{"order":38,"pid":33,"tgid":33,"ppid":2,"depth":2,"comm":"oom_reaper","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1309638661},
+{"order":39,"pid":34,"tgid":34,"ppid":2,"depth":2,"comm":"kworker/u4:2","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1309638661},
+{"order":40,"pid":35,"tgid":35,"ppid":2,"depth":2,"comm":"kworker/R-write","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1349638661},
+{"order":41,"pid":36,"tgid":36,"ppid":2,"depth":2,"comm":"kcompactd0","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1350638661},
+{"order":42,"pid":37,"tgid":37,"ppid":2,"depth":2,"comm":"ksmd","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":125,"start_ns":1356638661},
+{"order":43,"pid":38,"tgid":38,"ppid":2,"depth":2,"comm":"khugepaged","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":139,"start_ns":1362638661},
+{"order":44,"pid":39,"tgid":39,"ppid":2,"depth":2,"comm":"kworker/R-kinte","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1366638661},
+{"order":45,"pid":40,"tgid":40,"ppid":2,"depth":2,"comm":"kworker/R-kbloc","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1369638661},
+{"order":46,"pid":41,"tgid":41,"ppid":2,"depth":2,"comm":"kworker/R-blkcg","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1370638661},
+{"order":47,"pid":42,"tgid":42,"ppid":2,"depth":2,"comm":"irq/9-acpi","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":49,"start_ns":1412638661},
+{"order":48,"pid":43,"tgid":43,"ppid":2,"depth":2,"comm":"kworker/R-tpm_d","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1720638661},
+{"order":49,"pid":44,"tgid":44,"ppid":2,"depth":2,"comm":"kworker/R-ata_s","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1730638661},
+{"order":50,"pid":45,"tgid":45,"ppid":2,"depth":2,"comm":"kworker/R-md","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1739638661},
+{"order":51,"pid":46,"tgid":46,"ppid":2,"depth":2,"comm":"kworker/R-md_bi","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1741638661},
+{"order":52,"pid":47,"tgid":47,"ppid":2,"depth":2,"comm":"kworker/R-edac-","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1744638661},
+{"order":53,"pid":48,"tgid":48,"ppid":2,"depth":2,"comm":"kworker/R-devfr","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1747638661},
+{"order":54,"pid":49,"tgid":49,"ppid":2,"depth":2,"comm":"watchdogd","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":49,"start_ns":1782638661},
+{"order":55,"pid":50,"tgid":50,"ppid":2,"depth":2,"comm":"kworker/1:1H","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2121877261},
+{"order":56,"pid":51,"tgid":51,"ppid":2,"depth":2,"comm":"kswapd0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":2161839271},
+{"order":57,"pid":52,"tgid":52,"ppid":2,"depth":2,"comm":"ecryptfs-kthrea","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":2201883371},
+{"order":58,"pid":53,"tgid":53,"ppid":2,"depth":2,"comm":"kworker/R-kthro","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2373032451},
+{"order":59,"pid":54,"tgid":54,"ppid":2,"depth":2,"comm":"kworker/R-acpi_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2408180181},
+{"order":60,"pid":55,"tgid":55,"ppid":2,"depth":2,"comm":"scsi_eh_0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":2613000441},
+{"order":61,"pid":56,"tgid":56,"ppid":2,"depth":2,"comm":"kworker/R-scsi_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2614102661},
+{"order":62,"pid":57,"tgid":57,"ppid":2,"depth":2,"comm":"scsi_eh_1","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":2617697431},
+{"order":63,"pid":58,"tgid":58,"ppid":2,"depth":2,"comm":"kworker/R-scsi_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2618588041},
+{"order":64,"pid":59,"tgid":59,"ppid":2,"depth":2,"comm":"kworker/u4:3","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":2682575951},
+{"order":65,"pid":60,"tgid":60,"ppid":2,"depth":2,"comm":"kworker/R-mld","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2683245241},
+{"order":66,"pid":61,"tgid":61,"ppid":2,"depth":2,"comm":"kworker/0:1H","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2686073941},
+{"order":67,"pid":62,"tgid":62,"ppid":2,"depth":2,"comm":"kworker/R-ipv6_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2688820721},
+{"order":68,"pid":69,"tgid":69,"ppid":2,"depth":2,"comm":"kworker/R-kstrp","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2718556231},
+{"order":69,"pid":71,"tgid":71,"ppid":2,"depth":2,"comm":"kworker/u5:0","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2832637891},
+{"order":70,"pid":83,"tgid":83,"ppid":2,"depth":2,"comm":"kworker/u4:4","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":2848463181},
+{"order":71,"pid":85,"tgid":85,"ppid":2,"depth":2,"comm":"kworker/R-charg","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2869723371}
+],"count":72,"max_depth":3}
+=== THREADS_END
+=== T4 runtime toggle show_threads=0
+0
+=== T5 read as non-root
+69
+=== T6 30 reads in a row, snapshot numbers
+{"source":"kernel:/proc/tasktree","snapshot":34,"time":17932
+rmmod exit=0
+=== DONE
+[    5.599388] reboot: Power down

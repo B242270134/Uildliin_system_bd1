@@ -1,0 +1,404 @@
+c[?7l[2J[0mSeaBIOS (version 1.16.3-debian-1.16.3-2)
+
+
+iPXE (https://ipxe.org) 00:03.0 CA00 PCI2.10 PnP PMM+3EFCAE00+3EF0AE00 CA00
+Press Ctrl-B to configure iPXE (PCI 00:03.0)...                                                                               
+
+
+Booting from ROM...
+c[?7l[2J=== uname: Linux version 6.8.0-31-generic (buildd@lcy02-amd64-080) (x86_64-linux-gnu-gcc-13 (Ubuntu 13.2.0-23ubuntu4) 13.2.0, GNU ld (GNU Binutils for Ubuntu) 2.42) #31-Ubuntu SMP PREEMPT_DYNAMIC Sat Apr 20 00:40:06 UTC 2024
+=== PART I: insmod tasklist_linear.ko
+[    3.967705] tasklist_linear: loading out-of-tree module taints kernel.
+[    3.968083] tasklist_linear: module verification failed: signature and/or required key missing - tainting kernel
+[    3.977360] tasklist_linear: Loading module - linear task listing
+[    3.977427] tasklist_linear: COMMAND              PID    PPID STATE      RAW
+[    3.977589] tasklist_linear: init                   1       0     S        1
+[    3.977678] tasklist_linear: kthreadd               2       0     S        1
+[    3.977690] tasklist_linear: pool_workqueue_        3       2     S        1
+[    3.977700] tasklist_linear: kworker/R-rcu_g        4       2     I     1026
+[    3.977711] tasklist_linear: kworker/R-rcu_p        5       2     I     1026
+[    3.977721] tasklist_linear: kworker/R-slub_        6       2     I     1026
+[    3.977730] tasklist_linear: kworker/R-netns        7       2     I     1026
+[    3.977741] tasklist_linear: kworker/0:0            8       2     I     1026
+[    3.977751] tasklist_linear: kworker/0:0H           9       2     I     1026
+[    3.977760] tasklist_linear: kworker/0:1           10       2     I     1026
+[    3.977774] tasklist_linear: kworker/u4:0          11       2     I     1026
+[    3.977790] tasklist_linear: kworker/R-mm_pe       12       2     I     1026
+[    3.977806] tasklist_linear: rcu_tasks_kthre       13       2     I     1026
+[    3.977825] tasklist_linear: rcu_tasks_rude_       14       2     I     1026
+[    3.977845] tasklist_linear: rcu_tasks_trace       15       2     I     1026
+[    3.977967] tasklist_linear: ksoftirqd/0           16       2     S        1
+[    3.977995] tasklist_linear: rcu_preempt           17       2     I     1026
+[    3.978016] tasklist_linear: migration/0           18       2     S        1
+[    3.978031] tasklist_linear: idle_inject/0         19       2     S        1
+[    3.978046] tasklist_linear: cpuhp/0               20       2     S        1
+[    3.978060] tasklist_linear: cpuhp/1               21       2     S        1
+[    3.978075] tasklist_linear: idle_inject/1         22       2     S        1
+[    3.978090] tasklist_linear: migration/1           23       2     S        1
+[    3.978106] tasklist_linear: ksoftirqd/1           24       2     S        1
+[    3.978122] tasklist_linear: kworker/1:0           25       2     I     1026
+[    3.978131] tasklist_linear: kworker/1:0H          26       2     I     1026
+[    3.978141] tasklist_linear: kdevtmpfs             27       2     S        1
+[    3.978150] tasklist_linear: kworker/R-inet_       28       2     I     1026
+[    3.978160] tasklist_linear: kworker/u4:1          29       2     I     1026
+[    3.978170] tasklist_linear: kauditd               30       2     S     8193
+[    3.978180] tasklist_linear: kworker/1:1           31       2     I     1026
+[    3.978190] tasklist_linear: khungtaskd            32       2     S        1
+[    3.978201] tasklist_linear: kworker/u4:2          33       2     I     1026
+[    3.978210] tasklist_linear: oom_reaper            34       2     S     8193
+[    3.978220] tasklist_linear: kworker/R-write       35       2     I     1026
+[    3.978230] tasklist_linear: kcompactd0            36       2     S     8193
+[    3.978240] tasklist_linear: ksmd                  37       2     S     8193
+[    3.978250] tasklist_linear: khugepaged            38       2     S     8193
+[    3.978259] tasklist_linear: kworker/R-kinte       39       2     I     1026
+[    3.978268] tasklist_linear: kworker/R-kbloc       40       2     I     1026
+[    3.978278] tasklist_linear: kworker/R-blkcg       41       2     I     1026
+[    3.978287] tasklist_linear: irq/9-acpi            42       2     S        1
+[    3.978297] tasklist_linear: kworker/R-tpm_d       43       2     I     1026
+[    3.978307] tasklist_linear: kworker/R-ata_s       44       2     I     1026
+[    3.978316] tasklist_linear: kworker/R-md          45       2     I     1026
+[    3.978326] tasklist_linear: kworker/R-md_bi       46       2     I     1026
+[    3.978335] tasklist_linear: kworker/R-edac-       47       2     I     1026
+[    3.978345] tasklist_linear: kworker/R-devfr       48       2     I     1026
+[    3.978354] tasklist_linear: watchdogd             49       2     S        1
+[    3.978363] tasklist_linear: kworker/1:1H          50       2     I     1026
+[    3.978374] tasklist_linear: kswapd0               51       2     S        1
+[    3.978389] tasklist_linear: ecryptfs-kthrea       52       2     S     8193
+[    3.978399] tasklist_linear: kworker/R-kthro       53       2     I     1026
+[    3.978408] tasklist_linear: kworker/R-acpi_       54       2     I     1026
+[    3.978418] tasklist_linear: scsi_eh_0             55       2     S        1
+[    3.978428] tasklist_linear: kworker/R-scsi_       56       2     I     1026
+[    3.978437] tasklist_linear: scsi_eh_1             57       2     S        1
+[    3.978447] tasklist_linear: kworker/R-scsi_       58       2     I     1026
+[    3.978458] tasklist_linear: kworker/u4:3          59       2     I     1026
+[    3.978468] tasklist_linear: kworker/R-mld         60       2     I     1026
+[    3.978478] tasklist_linear: kworker/0:1H          61       2     I     1026
+[    3.978487] tasklist_linear: kworker/R-ipv6_       62       2     I     1026
+[    3.978497] tasklist_linear: kworker/R-kstrp       69       2     I     1026
+[    3.978538] tasklist_linear: kworker/u5:0          71       2     I     1026
+[    3.978553] tasklist_linear: kworker/R-charg       84       2     I     1026
+[    3.978563] tasklist_linear: sh                    90       1     S        1
+[    3.978573] tasklist_linear: sh                    91      90     S        1
+[    3.978583] tasklist_linear: sh                    92      90     S     8193
+[    3.978593] tasklist_linear: sh                    93      91     S     8193
+[    3.978603] tasklist_linear: sh                    94      91     S     8193
+[    3.978613] tasklist_linear: insmod                96       1     R        0
+[    3.978643] tasklist_linear: Total tasks listed: 71
+=== ps (compare)
+PID   PPID  STAT COMMAND
+    1     0 S    init
+    2     0 SW   kthreadd
+    3     2 SW   pool_workqueue_
+    4     2 IW<  kworker/R-rcu_g
+    5     2 IW<  kworker/R-rcu_p
+    6     2 IW<  kworker/R-slub_
+    7     2 IW<  kworker/R-netns
+    8     2 IW   kworker/0:0-rcu
+    9     2 IW<  kworker/0:0H-ev
+   10     2 IW   kworker/0:1-pm
+   11     2 IW   kworker/u4:0-ev
+   12     2 IW<  kworker/R-mm_pe
+   13     2 IW   rcu_tasks_kthre
+   14     2 IW   rcu_tasks_rude_
+   15     2 IW   rcu_tasks_trace
+   16     2 SW   ksoftirqd/0
+   17     2 IW   rcu_preempt
+   18     2 SW   migration/0
+   19     2 SW   idle_inject/0
+   20     2 SW   cpuhp/0
+   21     2 SW   cpuhp/1
+   22     2 SW   idle_inject/1
+   23     2 SW   migration/1
+   24     2 SW   ksoftirqd/1
+   25     2 IW   kworker/1:0-rcu
+   26     2 IW<  kworker/1:0H-ev
+   27     2 SW   kdevtmpfs
+   28     2 IW<  kworker/R-inet_
+   29     2 IW   kworker/u4:1-ev
+   30     2 SW   kauditd
+   31     2 IW   kworker/1:1-eve
+   32     2 SW   khungtaskd
+   33     2 IW   kworker/u4:2-ev
+   34     2 SW   oom_reaper
+   35     2 IW<  kworker/R-write
+   36     2 SW   kcompactd0
+   37     2 SWN  ksmd
+   38     2 SWN  khugepaged
+   39     2 IW<  kworker/R-kinte
+   40     2 IW<  kworker/R-kbloc
+   41     2 IW<  kworker/R-blkcg
+   42     2 SW   irq/9-acpi
+   43     2 IW<  kworker/R-tpm_d
+   44     2 IW<  kworker/R-ata_s
+   45     2 IW<  kworker/R-md
+   46     2 IW<  kworker/R-md_bi
+   47     2 IW<  kworker/R-edac-
+   48     2 IW<  kworker/R-devfr
+   49     2 SW   watchdogd
+   50     2 IW<  kworker/1:1H-kb
+   51     2 SW   kswapd0
+   52     2 SW   ecryptfs-kthrea
+   53     2 IW<  kworker/R-kthro
+   54     2 IW<  kworker/R-acpi_
+   55     2 SW   scsi_eh_0
+   56     2 IW<  kworker/R-scsi_
+   57     2 SW   scsi_eh_1
+   58     2 IW<  kworker/R-scsi_
+   59     2 IW   kworker/u4:3-ev
+   60     2 IW<  kworker/R-mld
+   61     2 IW<  kworker/0:1H
+   62     2 IW<  kworker/R-ipv6_
+   69     2 IW<  kworker/R-kstrp
+   71     2 IW<  kworker/u5:0
+   84     2 IW<  kworker/R-charg
+   90     1 S    sh
+   91    90 S    sh
+   92    90 S    sh
+   93    91 S    sh
+   94    91 S    sh
+   99     1 R    ps
+=== count ps lines: 74
+=== PART II: insmod tasklist_dfs.ko
+[    4.280210] tasklist_dfs: Loading module - DFS task tree from init_task
+[    4.280576] tasklist_dfs: swapper/0 [pid=0 ppid=-1 state=R]
+[    4.280776] tasklist_dfs:   init [pid=1 ppid=0 state=S]
+[    4.280813] tasklist_dfs:     sh [pid=90 ppid=1 state=S]
+[    4.280836] tasklist_dfs:       sh [pid=91 ppid=90 state=S]
+[    4.280857] tasklist_dfs:         sh [pid=93 ppid=91 state=S]
+[    4.281030] tasklist_dfs:         sh [pid=94 ppid=91 state=S]
+[    4.281069] tasklist_dfs:       sh [pid=92 ppid=90 state=S]
+[    4.281090] tasklist_dfs:     insmod [pid=106 ppid=1 state=R]
+[    4.281111] tasklist_dfs:   kthreadd [pid=2 ppid=0 state=S]
+[    4.281131] tasklist_dfs:     pool_workqueue_ [pid=3 ppid=2 state=S]
+[    4.281151] tasklist_dfs:     kworker/R-rcu_g [pid=4 ppid=2 state=I]
+[    4.281227] tasklist_dfs:     kworker/R-rcu_p [pid=5 ppid=2 state=I]
+[    4.281256] tasklist_dfs:     kworker/R-slub_ [pid=6 ppid=2 state=I]
+[    4.281277] tasklist_dfs:     kworker/R-netns [pid=7 ppid=2 state=I]
+[    4.281298] tasklist_dfs:     kworker/0:0 [pid=8 ppid=2 state=I]
+[    4.281319] tasklist_dfs:     kworker/0:0H [pid=9 ppid=2 state=I]
+[    4.281339] tasklist_dfs:     kworker/0:1 [pid=10 ppid=2 state=I]
+[    4.281359] tasklist_dfs:     kworker/u4:0 [pid=11 ppid=2 state=I]
+[    4.281379] tasklist_dfs:     kworker/R-mm_pe [pid=12 ppid=2 state=I]
+[    4.281399] tasklist_dfs:     rcu_tasks_kthre [pid=13 ppid=2 state=I]
+[    4.281420] tasklist_dfs:     rcu_tasks_rude_ [pid=14 ppid=2 state=I]
+[    4.281440] tasklist_dfs:     rcu_tasks_trace [pid=15 ppid=2 state=I]
+[    4.281460] tasklist_dfs:     ksoftirqd/0 [pid=16 ppid=2 state=S]
+[    4.281480] tasklist_dfs:     rcu_preempt [pid=17 ppid=2 state=I]
+[    4.281541] tasklist_dfs:     migration/0 [pid=18 ppid=2 state=S]
+[    4.281569] tasklist_dfs:     idle_inject/0 [pid=19 ppid=2 state=S]
+[    4.281590] tasklist_dfs:     cpuhp/0 [pid=20 ppid=2 state=S]
+[    4.281611] tasklist_dfs:     cpuhp/1 [pid=21 ppid=2 state=S]
+[    4.281631] tasklist_dfs:     idle_inject/1 [pid=22 ppid=2 state=S]
+[    4.281651] tasklist_dfs:     migration/1 [pid=23 ppid=2 state=S]
+[    4.281671] tasklist_dfs:     ksoftirqd/1 [pid=24 ppid=2 state=S]
+[    4.281691] tasklist_dfs:     kworker/1:0 [pid=25 ppid=2 state=I]
+[    4.281711] tasklist_dfs:     kworker/1:0H [pid=26 ppid=2 state=I]
+[    4.281732] tasklist_dfs:     kdevtmpfs [pid=27 ppid=2 state=S]
+[    4.281752] tasklist_dfs:     kworker/R-inet_ [pid=28 ppid=2 state=I]
+[    4.281772] tasklist_dfs:     kworker/u4:1 [pid=29 ppid=2 state=I]
+[    4.281793] tasklist_dfs:     kauditd [pid=30 ppid=2 state=S]
+[    4.281812] tasklist_dfs:     kworker/1:1 [pid=31 ppid=2 state=I]
+[    4.281996] tasklist_dfs:     khungtaskd [pid=32 ppid=2 state=S]
+[    4.282028] tasklist_dfs:     kworker/u4:2 [pid=33 ppid=2 state=I]
+[    4.282049] tasklist_dfs:     oom_reaper [pid=34 ppid=2 state=S]
+[    4.282069] tasklist_dfs:     kworker/R-write [pid=35 ppid=2 state=I]
+[    4.282089] tasklist_dfs:     kcompactd0 [pid=36 ppid=2 state=S]
+[    4.282110] tasklist_dfs:     ksmd [pid=37 ppid=2 state=S]
+[    4.282131] tasklist_dfs:     khugepaged [pid=38 ppid=2 state=S]
+[    4.282150] tasklist_dfs:     kworker/R-kinte [pid=39 ppid=2 state=I]
+[    4.282171] tasklist_dfs:     kworker/R-kbloc [pid=40 ppid=2 state=I]
+[    4.282199] tasklist_dfs:     kworker/R-blkcg [pid=41 ppid=2 state=I]
+[    4.282219] tasklist_dfs:     irq/9-acpi [pid=42 ppid=2 state=S]
+[    4.282238] tasklist_dfs:     kworker/R-tpm_d [pid=43 ppid=2 state=I]
+[    4.282258] tasklist_dfs:     kworker/R-ata_s [pid=44 ppid=2 state=I]
+[    4.282279] tasklist_dfs:     kworker/R-md [pid=45 ppid=2 state=I]
+[    4.282299] tasklist_dfs:     kworker/R-md_bi [pid=46 ppid=2 state=I]
+[    4.282319] tasklist_dfs:     kworker/R-edac- [pid=47 ppid=2 state=I]
+[    4.282340] tasklist_dfs:     kworker/R-devfr [pid=48 ppid=2 state=I]
+[    4.282359] tasklist_dfs:     watchdogd [pid=49 ppid=2 state=S]
+[    4.282379] tasklist_dfs:     kworker/1:1H [pid=50 ppid=2 state=I]
+[    4.282399] tasklist_dfs:     kswapd0 [pid=51 ppid=2 state=S]
+[    4.282419] tasklist_dfs:     ecryptfs-kthrea [pid=52 ppid=2 state=S]
+[    4.282439] tasklist_dfs:     kworker/R-kthro [pid=53 ppid=2 state=I]
+[    4.282459] tasklist_dfs:     kworker/R-acpi_ [pid=54 ppid=2 state=I]
+[    4.282479] tasklist_dfs:     scsi_eh_0 [pid=55 ppid=2 state=S]
+[    4.282537] tasklist_dfs:     kworker/R-scsi_ [pid=56 ppid=2 state=I]
+[    4.282565] tasklist_dfs:     scsi_eh_1 [pid=57 ppid=2 state=S]
+[    4.282586] tasklist_dfs:     kworker/R-scsi_ [pid=58 ppid=2 state=I]
+[    4.282607] tasklist_dfs:     kworker/u4:3 [pid=59 ppid=2 state=I]
+[    4.282627] tasklist_dfs:     kworker/R-mld [pid=60 ppid=2 state=I]
+[    4.282647] tasklist_dfs:     kworker/0:1H [pid=61 ppid=2 state=I]
+[    4.282667] tasklist_dfs:     kworker/R-ipv6_ [pid=62 ppid=2 state=I]
+[    4.282686] tasklist_dfs:     kworker/R-kstrp [pid=69 ppid=2 state=I]
+[    4.282707] tasklist_dfs:     kworker/u5:0 [pid=71 ppid=2 state=I]
+[    4.282727] tasklist_dfs:     kworker/R-charg [pid=84 ppid=2 state=I]
+[    4.282779] tasklist_dfs: DFS visited 72 tasks, max depth 4
+=== EXT: insmod tasktree.ko
+[    4.351604] tasktree: /proc/tasktree created (show_threads=0)
+-r--r--r--    1 0        0                0 Oct 29 16:07 /proc/tasktree
+=== SNAPSHOT1_BEGIN
+{"source":"kernel:/proc/tasktree","snapshot":1,"time":1793290053,"kernel":"6.8.0-31-generic","show_threads":false,"tasks":[
+{"order":0,"pid":0,"tgid":0,"ppid":-1,"depth":0,"comm":"swapper/0","state":"R","state_raw":0,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":0},
+{"order":1,"pid":1,"tgid":1,"ppid":0,"depth":1,"comm":"init","state":"S","state_raw":1,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":884571900},
+{"order":2,"pid":90,"tgid":90,"ppid":1,"depth":2,"comm":"sh","state":"S","state_raw":1,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":2893799700},
+{"order":3,"pid":91,"tgid":91,"ppid":90,"depth":3,"comm":"sh","state":"S","state_raw":1,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":2902663060},
+{"order":4,"pid":93,"tgid":93,"ppid":91,"depth":4,"comm":"sh","state":"S","state_raw":8193,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":2909734680},
+{"order":5,"pid":94,"tgid":94,"ppid":91,"depth":4,"comm":"sh","state":"S","state_raw":8193,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":2910487970},
+{"order":6,"pid":92,"tgid":92,"ppid":90,"depth":3,"comm":"sh","state":"S","state_raw":8193,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":2903830260},
+{"order":7,"pid":115,"tgid":115,"ppid":1,"depth":2,"comm":"cat","state":"R","state_raw":0,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":4358472230},
+{"order":8,"pid":2,"tgid":2,"ppid":0,"depth":1,"comm":"kthreadd","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":888571900},
+{"order":9,"pid":3,"tgid":3,"ppid":2,"depth":2,"comm":"pool_workqueue_","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":997571900},
+{"order":10,"pid":4,"tgid":4,"ppid":2,"depth":2,"comm":"kworker/R-rcu_g","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1001571900},
+{"order":11,"pid":5,"tgid":5,"ppid":2,"depth":2,"comm":"kworker/R-rcu_p","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1002571900},
+{"order":12,"pid":6,"tgid":6,"ppid":2,"depth":2,"comm":"kworker/R-slub_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1003571900},
+{"order":13,"pid":7,"tgid":7,"ppid":2,"depth":2,"comm":"kworker/R-netns","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1004571900},
+{"order":14,"pid":8,"tgid":8,"ppid":2,"depth":2,"comm":"kworker/0:0","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1004571900},
+{"order":15,"pid":9,"tgid":9,"ppid":2,"depth":2,"comm":"kworker/0:0H","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1005571900},
+{"order":16,"pid":10,"tgid":10,"ppid":2,"depth":2,"comm":"kworker/0:1","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1006571900},
+{"order":17,"pid":11,"tgid":11,"ppid":2,"depth":2,"comm":"kworker/u4:0","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1006571900},
+{"order":18,"pid":12,"tgid":12,"ppid":2,"depth":2,"comm":"kworker/R-mm_pe","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1007571900},
+{"order":19,"pid":13,"tgid":13,"ppid":2,"depth":2,"comm":"rcu_tasks_kthre","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1008571900},
+{"order":20,"pid":14,"tgid":14,"ppid":2,"depth":2,"comm":"rcu_tasks_rude_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1009571900},
+{"order":21,"pid":15,"tgid":15,"ppid":2,"depth":2,"comm":"rcu_tasks_trace","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1009571900},
+{"order":22,"pid":16,"tgid":16,"ppid":2,"depth":2,"comm":"ksoftirqd/0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1012571900},
+{"order":23,"pid":17,"tgid":17,"ppid":2,"depth":2,"comm":"rcu_preempt","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1015571900},
+{"order":24,"pid":18,"tgid":18,"ppid":2,"depth":2,"comm":"migration/0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":0,"start_ns":1017571900},
+{"order":25,"pid":19,"tgid":19,"ppid":2,"depth":2,"comm":"idle_inject/0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":49,"start_ns":1023571900},
+{"order":26,"pid":20,"tgid":20,"ppid":2,"depth":2,"comm":"cpuhp/0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1030571900},
+{"order":27,"pid":21,"tgid":21,"ppid":2,"depth":2,"comm":"cpuhp/1","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1034571900},
+{"order":28,"pid":22,"tgid":22,"ppid":2,"depth":2,"comm":"idle_inject/1","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":49,"start_ns":1035571900},
+{"order":29,"pid":23,"tgid":23,"ppid":2,"depth":2,"comm":"migration/1","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":0,"start_ns":1035571900},
+{"order":30,"pid":24,"tgid":24,"ppid":2,"depth":2,"comm":"ksoftirqd/1","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1035571900},
+{"order":31,"pid":25,"tgid":25,"ppid":2,"depth":2,"comm":"kworker/1:0","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1036571900},
+{"order":32,"pid":26,"tgid":26,"ppid":2,"depth":2,"comm":"kworker/1:0H","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1036571900},
+{"order":33,"pid":27,"tgid":27,"ppid":2,"depth":2,"comm":"kdevtmpfs","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1128571900},
+{"order":34,"pid":28,"tgid":28,"ppid":2,"depth":2,"comm":"kworker/R-inet_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1160571900},
+{"order":35,"pid":29,"tgid":29,"ppid":2,"depth":2,"comm":"kworker/u4:1","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1175571900},
+{"order":36,"pid":30,"tgid":30,"ppid":2,"depth":2,"comm":"kauditd","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1205571900},
+{"order":37,"pid":31,"tgid":31,"ppid":2,"depth":2,"comm":"kworker/1:1","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1211571900},
+{"order":38,"pid":32,"tgid":32,"ppid":2,"depth":2,"comm":"khungtaskd","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1228571900},
+{"order":39,"pid":33,"tgid":33,"ppid":2,"depth":2,"comm":"kworker/u4:2","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1231571900},
+{"order":40,"pid":34,"tgid":34,"ppid":2,"depth":2,"comm":"oom_reaper","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1231571900},
+{"order":41,"pid":35,"tgid":35,"ppid":2,"depth":2,"comm":"kworker/R-write","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1278571900},
+{"order":42,"pid":36,"tgid":36,"ppid":2,"depth":2,"comm":"kcompactd0","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1279571900},
+{"order":43,"pid":37,"tgid":37,"ppid":2,"depth":2,"comm":"ksmd","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":125,"start_ns":1286571900},
+{"order":44,"pid":38,"tgid":38,"ppid":2,"depth":2,"comm":"khugepaged","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":139,"start_ns":1291571900},
+{"order":45,"pid":39,"tgid":39,"ppid":2,"depth":2,"comm":"kworker/R-kinte","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1296571900},
+{"order":46,"pid":40,"tgid":40,"ppid":2,"depth":2,"comm":"kworker/R-kbloc","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1298571900},
+{"order":47,"pid":41,"tgid":41,"ppid":2,"depth":2,"comm":"kworker/R-blkcg","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1299571900},
+{"order":48,"pid":42,"tgid":42,"ppid":2,"depth":2,"comm":"irq/9-acpi","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":49,"start_ns":1341571900},
+{"order":49,"pid":43,"tgid":43,"ppid":2,"depth":2,"comm":"kworker/R-tpm_d","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1496571900},
+{"order":50,"pid":44,"tgid":44,"ppid":2,"depth":2,"comm":"kworker/R-ata_s","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1502571900},
+{"order":51,"pid":45,"tgid":45,"ppid":2,"depth":2,"comm":"kworker/R-md","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1506571900},
+{"order":52,"pid":46,"tgid":46,"ppid":2,"depth":2,"comm":"kworker/R-md_bi","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1507571900},
+{"order":53,"pid":47,"tgid":47,"ppid":2,"depth":2,"comm":"kworker/R-edac-","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1508571900},
+{"order":54,"pid":48,"tgid":48,"ppid":2,"depth":2,"comm":"kworker/R-devfr","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1510571900},
+{"order":55,"pid":49,"tgid":49,"ppid":2,"depth":2,"comm":"watchdogd","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":49,"start_ns":1534571900},
+{"order":56,"pid":50,"tgid":50,"ppid":2,"depth":2,"comm":"kworker/1:1H","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1718638840},
+{"order":57,"pid":51,"tgid":51,"ppid":2,"depth":2,"comm":"kswapd0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1741683470},
+{"order":58,"pid":52,"tgid":52,"ppid":2,"depth":2,"comm":"ecryptfs-kthrea","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1765302610},
+{"order":59,"pid":53,"tgid":53,"ppid":2,"depth":2,"comm":"kworker/R-kthro","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1871882220},
+{"order":60,"pid":54,"tgid":54,"ppid":2,"depth":2,"comm":"kworker/R-acpi_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1894498630},
+{"order":61,"pid":55,"tgid":55,"ppid":2,"depth":2,"comm":"scsi_eh_0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":2026067870},
+{"order":62,"pid":56,"tgid":56,"ppid":2,"depth":2,"comm":"kworker/R-scsi_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2027392740},
+{"order":63,"pid":57,"tgid":57,"ppid":2,"depth":2,"comm":"scsi_eh_1","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":2031216460},
+{"order":64,"pid":58,"tgid":58,"ppid":2,"depth":2,"comm":"kworker/R-scsi_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2031868570},
+{"order":65,"pid":59,"tgid":59,"ppid":2,"depth":2,"comm":"kworker/u4:3","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":2092300970},
+{"order":66,"pid":60,"tgid":60,"ppid":2,"depth":2,"comm":"kworker/R-mld","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2092520700},
+{"order":67,"pid":61,"tgid":61,"ppid":2,"depth":2,"comm":"kworker/0:1H","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2096826620},
+{"order":68,"pid":62,"tgid":62,"ppid":2,"depth":2,"comm":"kworker/R-ipv6_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2100562300},
+{"order":69,"pid":69,"tgid":69,"ppid":2,"depth":2,"comm":"kworker/R-kstrp","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2131946040},
+{"order":70,"pid":71,"tgid":71,"ppid":2,"depth":2,"comm":"kworker/u5:0","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2254687040},
+{"order":71,"pid":84,"tgid":84,"ppid":2,"depth":2,"comm":"kworker/R-charg","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2285742480},
+{"order":72,"pid":107,"tgid":107,"ppid":2,"depth":2,"comm":"kworker/0:2","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":4255990390}
+],"count":73,"max_depth":4}
+=== SNAPSHOT1_END
+=== started new pid 116
+=== SNAPSHOT2_BEGIN
+{"source":"kernel:/proc/tasktree","snapshot":2,"time":1793290054,"kernel":"6.8.0-31-generic","show_threads":false,"tasks":[
+{"order":0,"pid":0,"tgid":0,"ppid":-1,"depth":0,"comm":"swapper/0","state":"R","state_raw":0,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":0},
+{"order":1,"pid":1,"tgid":1,"ppid":0,"depth":1,"comm":"init","state":"S","state_raw":1,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":884571900},
+{"order":2,"pid":90,"tgid":90,"ppid":1,"depth":2,"comm":"sh","state":"S","state_raw":1,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":2893799700},
+{"order":3,"pid":91,"tgid":91,"ppid":90,"depth":3,"comm":"sh","state":"S","state_raw":1,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":2902663060},
+{"order":4,"pid":93,"tgid":93,"ppid":91,"depth":4,"comm":"sh","state":"S","state_raw":8193,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":2909734680},
+{"order":5,"pid":94,"tgid":94,"ppid":91,"depth":4,"comm":"sh","state":"S","state_raw":8193,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":2910487970},
+{"order":6,"pid":92,"tgid":92,"ppid":90,"depth":3,"comm":"sh","state":"S","state_raw":8193,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":2903830260},
+{"order":7,"pid":116,"tgid":116,"ppid":1,"depth":2,"comm":"sh","state":"S","state_raw":8193,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":4441340870},
+{"order":8,"pid":123,"tgid":123,"ppid":1,"depth":2,"comm":"cat","state":"R","state_raw":0,"threads":1,"kthread":false,"thread":false,"uid":0,"prio":120,"start_ns":5483897370},
+{"order":9,"pid":2,"tgid":2,"ppid":0,"depth":1,"comm":"kthreadd","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":888571900},
+{"order":10,"pid":3,"tgid":3,"ppid":2,"depth":2,"comm":"pool_workqueue_","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":997571900},
+{"order":11,"pid":4,"tgid":4,"ppid":2,"depth":2,"comm":"kworker/R-rcu_g","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1001571900},
+{"order":12,"pid":5,"tgid":5,"ppid":2,"depth":2,"comm":"kworker/R-rcu_p","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1002571900},
+{"order":13,"pid":6,"tgid":6,"ppid":2,"depth":2,"comm":"kworker/R-slub_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1003571900},
+{"order":14,"pid":7,"tgid":7,"ppid":2,"depth":2,"comm":"kworker/R-netns","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1004571900},
+{"order":15,"pid":8,"tgid":8,"ppid":2,"depth":2,"comm":"kworker/0:0","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1004571900},
+{"order":16,"pid":9,"tgid":9,"ppid":2,"depth":2,"comm":"kworker/0:0H","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1005571900},
+{"order":17,"pid":10,"tgid":10,"ppid":2,"depth":2,"comm":"kworker/0:1","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1006571900},
+{"order":18,"pid":11,"tgid":11,"ppid":2,"depth":2,"comm":"kworker/u4:0","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1006571900},
+{"order":19,"pid":12,"tgid":12,"ppid":2,"depth":2,"comm":"kworker/R-mm_pe","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1007571900},
+{"order":20,"pid":13,"tgid":13,"ppid":2,"depth":2,"comm":"rcu_tasks_kthre","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1008571900},
+{"order":21,"pid":14,"tgid":14,"ppid":2,"depth":2,"comm":"rcu_tasks_rude_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1009571900},
+{"order":22,"pid":15,"tgid":15,"ppid":2,"depth":2,"comm":"rcu_tasks_trace","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1009571900},
+{"order":23,"pid":16,"tgid":16,"ppid":2,"depth":2,"comm":"ksoftirqd/0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1012571900},
+{"order":24,"pid":17,"tgid":17,"ppid":2,"depth":2,"comm":"rcu_preempt","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1015571900},
+{"order":25,"pid":18,"tgid":18,"ppid":2,"depth":2,"comm":"migration/0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":0,"start_ns":1017571900},
+{"order":26,"pid":19,"tgid":19,"ppid":2,"depth":2,"comm":"idle_inject/0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":49,"start_ns":1023571900},
+{"order":27,"pid":20,"tgid":20,"ppid":2,"depth":2,"comm":"cpuhp/0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1030571900},
+{"order":28,"pid":21,"tgid":21,"ppid":2,"depth":2,"comm":"cpuhp/1","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1034571900},
+{"order":29,"pid":22,"tgid":22,"ppid":2,"depth":2,"comm":"idle_inject/1","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":49,"start_ns":1035571900},
+{"order":30,"pid":23,"tgid":23,"ppid":2,"depth":2,"comm":"migration/1","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":0,"start_ns":1035571900},
+{"order":31,"pid":24,"tgid":24,"ppid":2,"depth":2,"comm":"ksoftirqd/1","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1035571900},
+{"order":32,"pid":25,"tgid":25,"ppid":2,"depth":2,"comm":"kworker/1:0","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1036571900},
+{"order":33,"pid":26,"tgid":26,"ppid":2,"depth":2,"comm":"kworker/1:0H","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1036571900},
+{"order":34,"pid":27,"tgid":27,"ppid":2,"depth":2,"comm":"kdevtmpfs","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1128571900},
+{"order":35,"pid":28,"tgid":28,"ppid":2,"depth":2,"comm":"kworker/R-inet_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1160571900},
+{"order":36,"pid":29,"tgid":29,"ppid":2,"depth":2,"comm":"kworker/u4:1","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1175571900},
+{"order":37,"pid":30,"tgid":30,"ppid":2,"depth":2,"comm":"kauditd","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1205571900},
+{"order":38,"pid":31,"tgid":31,"ppid":2,"depth":2,"comm":"kworker/1:1","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1211571900},
+{"order":39,"pid":32,"tgid":32,"ppid":2,"depth":2,"comm":"khungtaskd","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1228571900},
+{"order":40,"pid":33,"tgid":33,"ppid":2,"depth":2,"comm":"kworker/u4:2","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1231571900},
+{"order":41,"pid":34,"tgid":34,"ppid":2,"depth":2,"comm":"oom_reaper","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1231571900},
+{"order":42,"pid":35,"tgid":35,"ppid":2,"depth":2,"comm":"kworker/R-write","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1278571900},
+{"order":43,"pid":36,"tgid":36,"ppid":2,"depth":2,"comm":"kcompactd0","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1279571900},
+{"order":44,"pid":37,"tgid":37,"ppid":2,"depth":2,"comm":"ksmd","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":125,"start_ns":1286571900},
+{"order":45,"pid":38,"tgid":38,"ppid":2,"depth":2,"comm":"khugepaged","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":139,"start_ns":1291571900},
+{"order":46,"pid":39,"tgid":39,"ppid":2,"depth":2,"comm":"kworker/R-kinte","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1296571900},
+{"order":47,"pid":40,"tgid":40,"ppid":2,"depth":2,"comm":"kworker/R-kbloc","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1298571900},
+{"order":48,"pid":41,"tgid":41,"ppid":2,"depth":2,"comm":"kworker/R-blkcg","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1299571900},
+{"order":49,"pid":42,"tgid":42,"ppid":2,"depth":2,"comm":"irq/9-acpi","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":49,"start_ns":1341571900},
+{"order":50,"pid":43,"tgid":43,"ppid":2,"depth":2,"comm":"kworker/R-tpm_d","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1496571900},
+{"order":51,"pid":44,"tgid":44,"ppid":2,"depth":2,"comm":"kworker/R-ata_s","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1502571900},
+{"order":52,"pid":45,"tgid":45,"ppid":2,"depth":2,"comm":"kworker/R-md","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1506571900},
+{"order":53,"pid":46,"tgid":46,"ppid":2,"depth":2,"comm":"kworker/R-md_bi","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1507571900},
+{"order":54,"pid":47,"tgid":47,"ppid":2,"depth":2,"comm":"kworker/R-edac-","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1508571900},
+{"order":55,"pid":48,"tgid":48,"ppid":2,"depth":2,"comm":"kworker/R-devfr","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1510571900},
+{"order":56,"pid":49,"tgid":49,"ppid":2,"depth":2,"comm":"watchdogd","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":49,"start_ns":1534571900},
+{"order":57,"pid":50,"tgid":50,"ppid":2,"depth":2,"comm":"kworker/1:1H","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1718638840},
+{"order":58,"pid":51,"tgid":51,"ppid":2,"depth":2,"comm":"kswapd0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1741683470},
+{"order":59,"pid":52,"tgid":52,"ppid":2,"depth":2,"comm":"ecryptfs-kthrea","state":"S","state_raw":8193,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":1765302610},
+{"order":60,"pid":53,"tgid":53,"ppid":2,"depth":2,"comm":"kworker/R-kthro","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1871882220},
+{"order":61,"pid":54,"tgid":54,"ppid":2,"depth":2,"comm":"kworker/R-acpi_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":1894498630},
+{"order":62,"pid":55,"tgid":55,"ppid":2,"depth":2,"comm":"scsi_eh_0","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":2026067870},
+{"order":63,"pid":56,"tgid":56,"ppid":2,"depth":2,"comm":"kworker/R-scsi_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2027392740},
+{"order":64,"pid":57,"tgid":57,"ppid":2,"depth":2,"comm":"scsi_eh_1","state":"S","state_raw":1,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":2031216460},
+{"order":65,"pid":58,"tgid":58,"ppid":2,"depth":2,"comm":"kworker/R-scsi_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2031868570},
+{"order":66,"pid":59,"tgid":59,"ppid":2,"depth":2,"comm":"kworker/u4:3","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":2092300970},
+{"order":67,"pid":60,"tgid":60,"ppid":2,"depth":2,"comm":"kworker/R-mld","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2092520700},
+{"order":68,"pid":61,"tgid":61,"ppid":2,"depth":2,"comm":"kworker/0:1H","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2096826620},
+{"order":69,"pid":62,"tgid":62,"ppid":2,"depth":2,"comm":"kworker/R-ipv6_","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2100562300},
+{"order":70,"pid":69,"tgid":69,"ppid":2,"depth":2,"comm":"kworker/R-kstrp","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2131946040},
+{"order":71,"pid":71,"tgid":71,"ppid":2,"depth":2,"comm":"kworker/u5:0","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2254687040},
+{"order":72,"pid":84,"tgid":84,"ppid":2,"depth":2,"comm":"kworker/R-charg","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":100,"start_ns":2285742480},
+{"order":73,"pid":107,"tgid":107,"ppid":2,"depth":2,"comm":"kworker/0:2","state":"I","state_raw":1026,"threads":1,"kthread":true,"thread":false,"uid":0,"prio":120,"start_ns":4255990390}
+],"count":74,"max_depth":4}
+=== SNAPSHOT2_END
+=== show_threads param: N
+=== param after write: Y
+ls: /proc/tasktree: No such file or directory
+=== lsmod after rmmod:
+Module                  Size  Used by    Tainted: G  
+[    4.331943] tasklist_dfs: Removing module
+[    4.351604] tasktree: /proc/tasktree created (show_threads=0)
+[    5.600508] tasktree: /proc/tasktree removed
+=== DONE
+[    5.664964] reboot: Power down
