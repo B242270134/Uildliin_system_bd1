@@ -76,7 +76,7 @@ VM-ийн гаднаас нээх бол `--host 0.0.0.0` (зөвхөн найд
 
 ## 8.2 Operational заавар
 
-1. **Clone:** `git clone <repo-url> tasklist-graph && cd tasklist-graph`
+1. **Clone:** `git clone https://github.com/B242270134/Uildliin_system_bd1`
 2. **Орчин:** Ubuntu 24.04 LTS, kernel `6.8.0-xx-generic`, gcc 13, GNU make 4.3, Python ≥ 3.8. Шалгах: `uname -r; gcc --version; python3 --version`
 3. **Dependency:** `sudo apt install -y build-essential linux-headers-$(uname -r) python3` (Python-д pip сан шаардлагагүй)
 4. **Build:** `make -C src/kernel` → `tasklist_linear.ko`, `tasklist_dfs.ko`, `tasktree.ko`. Цэвэрлэх: `make -C src/kernel clean`
