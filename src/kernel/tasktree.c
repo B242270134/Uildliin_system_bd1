@@ -243,44 +243,42 @@ static void tg_build_tree(struct tg_snap *s)
 	}
 
 	/*
-	 * Мөчлөг илрүүлэх.
-	 *
-	 * Эцгийн холбоосыг дагаж явахад count-оос
-	 * олон алхам шаардвал мөчлөг байна.
-	 *
-	 * Тухайн зангилааг PID 0-д холбоно.
+	 * Эцгийн холбоосын мөчлөгийг шалгах.
+	 * Хэрэв холбоос PID 0-д хүрэхгүй бол
+	 * тухайн зангилааг үндэстэй холбоно.
 	 */
 	for (i = 1; i < s->count; i++) {
-    int node_idx = i;
-    int steps = 0;
+		int node_idx = i;
+		int steps = 0;
 
-    while (node_idx > 0 && steps < s->count) {
-        node_idx = s->parent_index[node_idx];
-        steps++;
-    }
+		while (node_idx > 0 && steps < s->count) {
+			node_idx = s->parent_index[node_idx];
+			steps++;
+		}
 
-    if (node_idx != 0) {
-        s->parent_index[i] = 0;
-        s->truncated = true;
+		if (node_idx != 0) {
+			s->parent_index[i] = 0;
+			s->truncated = true;
 
-        pr_warn("Invalid parent chain: PID=%d\n",
-                s->recs[i].pid);
-    }
-}
+			pr_warn("Invalid parent chain: PID=%d\n",
+				s->recs[i].pid);
+		}
+	}
+
 	/*
- * Хүүхдүүдийг буурах индексийн дарааллаар
- * жагсаалтын эхэнд нэмнэ.
- *
- * Ингэснээр linked list өсөх дараалалтай,
- * харин DFS стекээр боловсруулахад урвуу
- * дарааллаар очихыг анхаарна.
- */
-for (i = 1; i < s->count; i++) {
-	int parent = s->parent_index[i];
+	 * Хүүхдүүдийг linked list-ийн эхэнд нэмнэ.
+	 * Ингэснээр жагсаалт буурах индексийн
+	 * дараалалтай болно.
+	 *
+	 * DFS стекээр боловсруулахад хүүхдүүд
+	 * өсөх индексийн дарааллаар зочлогдоно.
+	 */
+	for (i = 1; i < s->count; i++) {
+		int parent = s->parent_index[i];
 
-	s->next_sibling[i] = s->first_child[parent];
-	s->first_child[parent] = i;
-}
+		s->next_sibling[i] = s->first_child[parent];
+		s->first_child[parent] = i;
+	}
 }
 
 static void tg_dfs(struct tg_snap *s)
