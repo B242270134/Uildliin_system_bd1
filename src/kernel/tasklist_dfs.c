@@ -1,100 +1,190 @@
 // SPDX-License-Identifier: GPL-2.0
 /*
- * tasklist_dfs.c - Part II: Iterating over Tasks with a Depth-First Search Tree
- * Operating System Concepts 10e, Chapter 3, Programming Project 3.
- *
- * init_task-аас эхлээд children / sibling жагсаалтаар DFS хийж,
- * name, state, pid-ийг гүнээр догол мөр гаргаж kernel log руу бичнэ.
- *
- * Сурах бичгийн загвараас ялгаатай нэг засвар: процессын аль ч thread
- * fork() хийж болох ба тэр хүүхэд нь ТУХАЙН THREAD-ийн children
- * жагсаалтад ордог (leader-ийнх биш). Тиймээс процесс бүрийн бүх
- * thread-ийн children жагсаалтыг гүйнэ (for_each_thread). Үгүй бол
- * олон thread-тэй программын хүүхдүүд модноос алга болдог.
+ * tasklist_dfs.c
+ * Iterative DFS using a best-effort process snapshot.
  */
+
 #define pr_fmt(fmt) "tasklist_dfs: " fmt
 
 #include <linux/init.h>
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/sched.h>
-#include <linux/sched/signal.h>	/* for_each_thread */
-#include <linux/sched/task.h>	/* init_task */
-#include <linux/list.h>
+#include <linux/sched/signal.h>
+#include <linux/slab.h>
 #include <linux/rcupdate.h>
+#include <linux/string.h>
+
 #include "common.h"
 
+#define MAX_TASKS 16384
 #define MAX_INDENT 32
-#define MAX_DEPTH  256		/* kernel stack-ийг хамгаалах хязгаар */
 
-static int dfs_count, dfs_max_depth, dfs_cut;
+struct dfs_record {
+	int pid;
+	int ppid;
+	int depth;
+	int parent_index;
+	char state;
+	char comm[TASK_COMM_LEN];
+};
 
-static void dfs(struct task_struct *task, int depth)
+struct dfs_frame {
+	int index;
+	int depth;
+};
+
+static struct dfs_record *records;
+static struct dfs_frame *stack;
+static int task_count;
+
+static int find_task(int pid)
 {
-	struct task_struct *child, *thr;
-	struct list_head *list;
-	int indent = depth > MAX_INDENT ? MAX_INDENT : depth;
+	int i;
 
-	dfs_count++;
-	if (depth > dfs_max_depth)
-		dfs_max_depth = depth;
-
-	/* %*s: depth*2 зайгаар догол мөр гаргаж модны бүтцийг харуулна */
-	pr_info("%*s%s [pid=%d ppid=%d state=%c]\n",
-		indent * 2, "",
-		task->comm,
-		task_pid_nr(task),
-		task_ppid_safe(task),
-		task_state_to_char(task));
-
-	if (depth >= MAX_DEPTH) {	/* рекурс хэт гүнзгийрэхээс сэргийлнэ */
-		dfs_cut++;
-		return;
+	for (i = 0; i < task_count; i++) {
+		if (records[i].pid == pid)
+			return i;
 	}
 
-	if (task == &init_task) {
-		/* init_task (PID 0): сурах бичгийн загвар яг хэвээрээ */
-		list_for_each(list, &task->children) {
-			child = list_entry(list, struct task_struct, sibling);
-			dfs(child, depth + 1);
+	return -1;
+}
+
+static void capture_tasks(void)
+{
+	struct task_struct *task;
+
+	task_count = 0;
+
+	rcu_read_lock();
+
+	for_each_process(task) {
+		struct dfs_record *r;
+
+		if (task_count >= MAX_TASKS)
+			break;
+
+		r = &records[task_count++];
+
+		r->pid = task_pid_nr(task);
+		r->ppid = task_ppid_safe(task);
+		r->state = task_state_to_char(task);
+		get_task_comm(r->comm, task);
+		r->depth = -1;
+		r->parent_index = -1;
+	}
+
+	rcu_read_unlock();
+}
+
+static void build_tree(void)
+{
+	int i;
+
+	for (i = 0; i < task_count; i++)
+		records[i].parent_index =
+			find_task(records[i].ppid);
+}
+
+static void iterative_dfs(void)
+{
+	int sp = 0;
+	int visited = 0;
+	int max_depth = 0;
+	int i;
+
+	/*
+	 * Start from roots whose parents are not in the snapshot.
+	 */
+	for (i = task_count - 1; i >= 0; i--) {
+		if (records[i].parent_index == -1) {
+			stack[sp].index = i;
+			stack[sp].depth = 0;
+			sp++;
 		}
-		return;
 	}
 
-	/* children толгойгоос sibling-ээр гинжлэгдэнэ; thread бүрийнхийг гүйнэ */
-	for_each_thread(task, thr) {
-		list_for_each(list, &thr->children) {
-			child = list_entry(list, struct task_struct, sibling);
-			dfs(child, depth + 1);
+	while (sp > 0) {
+		struct dfs_frame frame = stack[--sp];
+		struct dfs_record *r = &records[frame.index];
+		int indent = min(frame.depth, MAX_INDENT);
+		int j;
+
+		if (r->depth != -1)
+			continue;
+
+		r->depth = frame.depth;
+		visited++;
+
+		if (frame.depth > max_depth)
+			max_depth = frame.depth;
+
+		pr_info(
+			"depth=%d %*s%s [pid=%d ppid=%d state=%c]\n",
+			frame.depth,
+			indent * 2, "",
+			r->comm,
+			r->pid,
+			r->ppid,
+			r->state
+		);
+
+		for (j = task_count - 1; j >= 0; j--) {
+			if (records[j].parent_index == frame.index &&
+			    records[j].depth == -1) {
+				if (sp >= MAX_TASKS) {
+					pr_warn("DFS stack capacity reached\n");
+					break;
+				}
+
+				stack[sp].index = j;
+				stack[sp].depth = frame.depth + 1;
+				sp++;
+			}
 		}
 	}
+
+	pr_info(
+		"DFS visited %d/%d processes, max depth=%d\n",
+		visited, task_count, max_depth
+	);
 }
 
 static int __init tasklist_dfs_init(void)
 {
-	pr_info("Loading module - DFS task tree from init_task\n");
+	records = kvcalloc(MAX_TASKS, sizeof(*records), GFP_KERNEL);
+	if (!records)
+		return -ENOMEM;
 
-	dfs_count = 0;
-	dfs_max_depth = 0;
-	dfs_cut = 0;
+	stack = kvcalloc(MAX_TASKS, sizeof(*stack), GFP_KERNEL);
+	if (!stack) {
+		kvfree(records);
+		return -ENOMEM;
+	}
 
-	rcu_read_lock();
-	dfs(&init_task, 0);
-	rcu_read_unlock();
+	pr_info("Loading iterative DFS module\n");
 
-	pr_info("DFS visited %d tasks, max depth %d%s\n", dfs_count, dfs_max_depth,
-		dfs_cut ? " (depth limit reached!)" : "");
+	capture_tasks();
+	build_tree();
+	iterative_dfs();
+
+	kvfree(stack);
+	kvfree(records);
+
+	stack = NULL;
+	records = NULL;
+
 	return 0;
 }
 
 static void __exit tasklist_dfs_exit(void)
 {
-	pr_info("Removing module\n");
+	pr_info("Removing iterative DFS module\n");
 }
 
 module_init(tasklist_dfs_init);
 module_exit(tasklist_dfs_exit);
 
 MODULE_LICENSE("GPL");
-MODULE_DESCRIPTION("OSC Ch.3 Project 3 Part II - list tasks with DFS");
 MODULE_AUTHOR("BD1 team");
+MODULE_DESCRIPTION("Iterative DFS process tree with best-effort snapshot");
