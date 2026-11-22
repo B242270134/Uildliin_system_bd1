@@ -215,13 +215,23 @@ static void tg_build_tree(struct tg_snap *s)
 {
 	int i;
 
+	/* Бүх холбоосыг эхлүүлэх */
 	for (i = 0; i < s->count; i++) {
 		s->first_child[i] = -1;
 		s->next_sibling[i] = -1;
 		s->parent_index[i] = -1;
+		s->recs[i].parent = -1;
+		s->recs[i].depth = -1;
 	}
 
-	for (i = s->count - 1; i >= 1; i--) {
+	if (!s->count)
+		return;
+
+	/* PID 0 бол үндэс */
+	s->parent_index[0] = -1;
+
+	/* PID/PPID ашиглан эцгийн индексийг тодорхойлох */
+	for (i = 1; i < s->count; i++) {
 		int parent = tg_find_pid(s, s->recs[i].ppid);
 
 		if (parent < 0 || parent == i) {
@@ -230,11 +240,50 @@ static void tg_build_tree(struct tg_snap *s)
 		}
 
 		s->parent_index[i] = parent;
-		s->next_sibling[i] = s->first_child[parent];
-		s->first_child[parent] = i;
 	}
+
+	/*
+	 * Мөчлөг илрүүлэх.
+	 *
+	 * Эцгийн холбоосыг дагаж явахад count-оос
+	 * олон алхам шаардвал мөчлөг байна.
+	 *
+	 * Тухайн зангилааг PID 0-д холбоно.
+	 */
+	for (i = 1; i < s->count; i++) {
+    int node_idx = i;
+    int steps = 0;
+
+    while (node_idx > 0 && steps < s->count) {
+        node_idx = s->parent_index[node_idx];
+        steps++;
+    }
+
+    if (node_idx != 0) {
+        s->parent_index[i] = 0;
+        s->truncated = true;
+
+        pr_warn("Invalid parent chain: PID=%d\n",
+                s->recs[i].pid);
+    }
 }
-static void tg_dfs(struct tg_snap *s)
+	/*
+ * Хүүхдүүдийг буурах индексийн дарааллаар
+ * жагсаалтын эхэнд нэмнэ.
+ *
+ * Ингэснээр linked list өсөх дараалалтай,
+ * харин DFS стекээр боловсруулахад урвуу
+ * дарааллаар очихыг анхаарна.
+ */
+for (i = 1; i < s->count; i++) {
+	int parent = s->parent_index[i];
+
+	s->next_sibling[i] = s->first_child[parent];
+	s->first_child[parent] = i;
+}
+}
+
+	static void tg_dfs(struct tg_snap *s)
 {
 	int sp = 0;
 	int i;
@@ -242,14 +291,19 @@ static void tg_dfs(struct tg_snap *s)
 	if (!s->count)
 		return;
 
-	/* PID 0 буюу үндсэн процесс */
+	s->dfs_count = 0;
+	s->max_depth = 0;
+
+	/* PID 0-оос эхлэх */
 	s->stack[sp++].index = 0;
 
 	while (sp > 0) {
 		struct tg_frame frame = s->stack[--sp];
 		struct tg_rec *r = &s->recs[frame.index];
-		int parent, child;
+		int parent;
+		int child;
 
+		/* Давхар боловсруулахаас хамгаалах */
 		if (r->depth >= 0)
 			continue;
 
@@ -259,6 +313,10 @@ static void tg_dfs(struct tg_snap *s)
 			r->depth = 0;
 			r->parent = -1;
 		} else {
+			/*
+			 * Эцэг нь DFS-д өмнө нь
+			 * боловсруулагдсан байх ёстой.
+			 */
 			if (s->recs[parent].depth < 0) {
 				s->truncated = true;
 				continue;
@@ -271,8 +329,18 @@ static void tg_dfs(struct tg_snap *s)
 		if (r->depth > s->max_depth)
 			s->max_depth = r->depth;
 
+		/* DFS pre-order бүртгэх */
 		s->dfs_order[s->dfs_count++] = frame.index;
 
+		/*
+		 * Хүүхдүүдийг стек рүү нэмэх.
+		 *
+		 * tg_build_tree() жагсаалтыг
+		 * буурах индексээр байгуулсан.
+		 *
+		 * Стек LIFO тул DFS нь хүүхдүүдийг
+		 * өсөх индексийн дарааллаар боловсруулна.
+		 */
 		for (child = s->first_child[frame.index];
 		     child >= 0;
 		     child = s->next_sibling[child]) {
@@ -287,25 +355,31 @@ static void tg_dfs(struct tg_snap *s)
 	}
 
 	/*
-	 * Мөчлөгтэй эсвэл үндсэн модноос
-	 * холбогдоогүй процессуудыг илрүүлэх.
+	 * Бүх бүртгэгдсэн процесс DFS-д
+	 * хамрагдсан эсэхийг шалгах.
 	 */
+	if (s->dfs_count != s->count) {
+		s->truncated = true;
+
+		pr_warn("DFS incomplete: captured=%d visited=%d\n",
+			s->count, s->dfs_count);
+	}
+
 	for (i = 0; i < s->count; i++) {
 		if (s->recs[i].depth < 0) {
-			s->truncated = true;
-			pr_warn("Unreachable process: PID=%d PPID=%d\n",
+			pr_warn("Unreachable PID=%d PPID=%d\n",
 				s->recs[i].pid,
 				s->recs[i].ppid);
 		}
 	}
 }
-
 static void tg_free(struct tg_snap *s)
-	{
+{
 	if (!s)
 		return;
 
 	kvfree(s->dfs_order);
+	kvfree(s->parent_index);
 	kvfree(s->recs);
 	kvfree(s->linear);
 	kvfree(s->stack);
@@ -314,7 +388,6 @@ static void tg_free(struct tg_snap *s)
 
 	kfree(s);
 }
-
 /* -------------------------------------------------- JSON */
 
 static void seq_json_str(struct seq_file *m, const char *str)
