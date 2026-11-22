@@ -56,7 +56,20 @@ static void capture_tasks(void)
 
 	task_count = 0;
 
-	rcu_read_lock();
+/* Include init_task (PID 0) as the root of the process tree. */
+records[task_count].pid = 0;
+records[task_count].ppid = -1;
+records[task_count].depth = -1;
+records[task_count].parent_index = -1;
+records[task_count].state = task_state_to_char(&init_task);
+
+strscpy(records[task_count].comm,
+        "swapper/0",
+        TASK_COMM_LEN);
+
+task_count++;
+
+rcu_read_lock();
 
 	for_each_process(task) {
 		struct dfs_record *r;
@@ -91,49 +104,72 @@ static void iterative_dfs(void)
 	int sp = 0;
 	int visited = 0;
 	int max_depth = 0;
-	int i;
+	int root, j;
 
 	/*
-	 * Start from roots whose parents are not in the snapshot.
+	 * PID 0-ээс эхэлж, дараа нь snapshot-д
+	 * эцэг нь байхгүй процессуудыг боловсруулна.
 	 */
-	for (i = task_count - 1; i >= 0; i--) {
-		if (records[i].parent_index == -1) {
-			stack[sp].index = i;
-			stack[sp].depth = 0;
-			sp++;
+	for (root = 0; root < task_count; root++) {
+		int root_index;
+
+		if (root == 0) {
+			root_index = find_task(0);
+		} else {
+			root_index = root;
 		}
-	}
 
-	while (sp > 0) {
-		struct dfs_frame frame = stack[--sp];
-		struct dfs_record *r = &records[frame.index];
-		int indent = min(frame.depth, MAX_INDENT);
-		int j;
-
-		if (r->depth != -1)
+		if (root_index < 0)
 			continue;
 
-		r->depth = frame.depth;
-		visited++;
+		if (records[root_index].depth != -1)
+			continue;
 
-		if (frame.depth > max_depth)
-			max_depth = frame.depth;
+		if (root != 0 &&
+		    records[root_index].parent_index != -1)
+			continue;
 
-		pr_info(
-			"depth=%d %*s%s [pid=%d ppid=%d state=%c]\n",
-			frame.depth,
-			indent * 2, "",
-			r->comm,
-			r->pid,
-			r->ppid,
-			r->state
-		);
+		sp = 0;
 
-		for (j = task_count - 1; j >= 0; j--) {
-			if (records[j].parent_index == frame.index &&
-			    records[j].depth == -1) {
+		stack[sp].index = root_index;
+		stack[sp].depth = 0;
+		sp++;
+
+		while (sp > 0) {
+			struct dfs_frame frame = stack[--sp];
+			struct dfs_record *r = &records[frame.index];
+			int indent = min(frame.depth, MAX_INDENT);
+
+			if (r->depth != -1)
+				continue;
+
+			r->depth = frame.depth;
+			visited++;
+
+			if (frame.depth > max_depth)
+				max_depth = frame.depth;
+
+			pr_info(
+				"depth=%d %*s%s [pid=%d ppid=%d state=%c]\n",
+				frame.depth,
+				indent * 2, "",
+				r->comm,
+				r->pid,
+				r->ppid,
+				r->state
+			);
+
+			for (j = task_count - 1; j >= 0; j--) {
+				if (records[j].parent_index != frame.index)
+					continue;
+
+				if (records[j].depth != -1)
+					continue;
+
 				if (sp >= MAX_TASKS) {
-					pr_warn("DFS stack capacity reached\n");
+					pr_warn(
+						"DFS stack capacity reached\n"
+					);
 					break;
 				}
 
@@ -148,6 +184,12 @@ static void iterative_dfs(void)
 		"DFS visited %d/%d processes, max depth=%d\n",
 		visited, task_count, max_depth
 	);
+
+	if (visited != task_count)
+		pr_warn(
+			"Some processes were not visited: %d\n",
+			task_count - visited
+		);
 }
 
 static int __init tasklist_dfs_init(void)
