@@ -1,73 +1,223 @@
 # Linux Kernel Module for Listing Tasks + Task Graph UI
 
-**F.CSM302 Үйлдлийн систем — Бие даалт 1**
-Хуваарилалтын код: **II-4-3**
+> **F.CSM302 — Үйлдлийн систем | Бие даалт №1**  
+> **Хуваарилалтын код:** `II-4-3`  
+> **Сэдэв:** Linux Kernel Module for Listing Tasks  
+> **UI дүрслэл:** Task Graph
 
-| Гишүүн | Оюутны код | 
-| --- | --- | 
-| М. Хуншагай | B242270134 | 
-| Т. Төгөлдөрчимэг | B241940117 | 
-| Г. Тэргэл | B242270048 | 
-| Б. Дэлгэрмөрөн | B210930009 | 
-| Г. Мөнхнайрамдал | B241910043 | 
-| П. Даваажаргал | B231940145 | 
+## Төслийн тухай
 
-Сурах бичиг: Silberschatz, Galvin, Gagne — *Operating System Concepts* 10e (Wiley, 2018),
-**Бүлэг 3 Processes → Programming Project 3 "Linux Kernel Module for Listing Tasks"**.
-UI дүрслэл: **Task graph**.
+Энэ төсөл нь Linux үйлдлийн системийн **процесс (task)-уудыг kernel түвшинд жагсаах**, процессын **эцэг–хүүхдийн хамаарлыг** судлах, үр дүнг **интерактив Task Graph** хэлбэрээр дүрслэх зорилготой.
 
-Kernel module-оор системийн бүх task-ыг (1) `for_each_process()`-оор шугаман, (2) `init_task`-аас
-`children`/`sibling` жагсаалтаар DFS-ээр гүйж жагсаана. Өргөтгөл болох `tasktree` module нь
-`/proc/tasktree` файлыг уншиx бүрт шинэ snapshot-ыг JSON-оор гаргаж, вэб UI нь
-эцэг–хүүхдийн холбоог граф хэлбэрээр харуулна. **Refresh дарах бүрт бодит жагсаалт шинэчлэгдэнэ.**
+Суурь даалгавар нь *Operating System Concepts* (10 дахь хэвлэл), **Бүлэг 3 — Processes**, *Programming Project 3: Linux Kernel Module for Listing Tasks* юм.
+
+Төсөл дараах гурван хэсэгтэй:
+
+1. **Linear listing:** `for_each_process()` ашиглан процессуудыг жагсаах kernel module.
+2. **DFS listing:** `init_task`-аас эхлэн `children` / `sibling` холбоосоор процессын модыг гүнээр нь тойрох kernel module.
+3. **Task Graph UI:** `/proc/tasktree`-ээс JSON snapshot авч, процессуудын PID, PPID, төлөв болон холбоосыг SVG графаар харуулах вэб интерфейс.
+
+> **Анхаарах зүйл:** DFS-ийн дотоод хэрэгжүүлэлт (рекурсив эсвэл iterative) болон нэмэлт боломжуудыг эцсийн кодтой тулгаж баталгаажуулна. Энд алгоритмын зорилго, өгөгдлийн холбоосыг тайлбарласан.
+
+## Багийн бүрэлдэхүүн
+
+| Гишүүн | Оюутны код |
+| :--- | :--- |
+| М. Хуншагай | B242270134 |
+| Т. Төгөлдөрчимэг | B241940117 |
+| Г. Тэргэл | B242270048 |
+| Б. Дэлгэрмөрөн | B210930009 |
+| Г. Мөнхнайрамдал | B241910043 |
+| П. Даваажаргал | B231940145 |
+
+## Үндсэн боломжууд
+
+### Kernel modules
+
+| Module | Үүрэг |
+| :--- | :--- |
+| `tasklist_linear` | `for_each_process()`-оор процессуудыг шугаман жагсаах |
+| `tasklist_dfs` | `init_task`-аас процессын модыг DFS зарчмаар тойрох |
+| `tasktree` | `/proc/tasktree` интерфейсээр JSON snapshot гаргах |
+
+`tasktree` module-ийн snapshot нь UI-д **Refresh** хийх үед процессын одоогийн бүтцийг шинэчлэхэд ашиглагдана.
+
+### Task Graph UI
+
+- Процессын **PID / PPID** болон эцэг–хүүхдийн холбоог графаар харуулах.
+- Процессын төлөвийг ялгаж ажиглах: `R` (running/runnable), `S` (interruptible sleep), `D` (uninterruptible sleep), `T` (stopped/traced), `Z` (zombie), `I` (idle kernel thread — системээс хамаарна).
+- **Refresh** — процессын snapshot-ыг дахин авах.
+- **DFS дүрслэл** — процессын модоор гүйх дарааллыг алхамчилж ажиглах. Play/Pause/Step зэрэг удирдлагын бодит нэр, ажиллагааг ашиглаж буй UI хувилбартай тулгаж шалгана.
+- Kernel module-гүй үед `userspace` болон бэлэн JSON файлаас өгөгдөл унших горим.
+
+**Чухал:** UI-ийн DFS тоглуулалт нь **дүрслэлийн ажиллагаа** бөгөөд процессын kernel төлөвийг өөрчилдөггүй.
+
+## Дэлгэцийн зургууд
+
+Доорх зургууд `docs/img/` хавтсанд хадгалагдана. Ижил нэртэй PNG файлыг шинэ screenshot-оор соливол README доторх холбоос хэвээр ажиллана.
+
+### 1. Kernel процессын бүтэн граф
+
+![Kernel task graph — full view](docs/img/ui_kernel_full.png)
+
+### 2. DFS алхамчилсан дүрслэл
+
+![DFS step visualization](docs/img/ui_dfs_step.png)
+
+### 3. Процессын төлөв өөрчлөгдөх нь
+
+| Түр зогсоосон процесс | Zombie процесс |
+| :---: | :---: |
+| ![Stopped process](docs/img/ui_live_sigstop.png) | ![Zombie process](docs/img/ui_zombie.png) |
+
+### 4. Нэмэлт туршилтууд
+
+| Kernel snapshot | Процесс нэмэгдсэн үе |
+| :---: | :---: |
+| ![Kernel snapshot](docs/img/ui_kernel_snapshot.png) | ![Process spawn diff](docs/img/ui_spawn_diff.png) |
+
+Бусад screenshot-ууд: [`docs/img/`](docs/img/).
 
 ## Туршсан орчин
 
-| Орчин | Kernel | Compiler | Үр дүн |
-| --- | --- | --- | --- |
-| **Ubuntu 26.04.1 LTS (үндсэн, багийн VM)** | 7.0.0-42-generic | GCC 15 | QEMU 19/19 PASS — `examples/qemu-ubuntu-26.04/` |
-| Ubuntu 24.04 LTS (нэмэлт шалгалт) | 6.8.0-31-generic | GCC 13 | QEMU 19/19 PASS — `examples/qemu/` |
+Доорх хүснэгтэд **төслийн өмнөх README-д бүртгэгдсэн** туршилтын мэдээллийг хадгалав. Шинэ kernel дээр хийсэн туршилтын үр дүнг баталгаажуулсны дараа тусад нь нэмнэ.
 
-Код нь `LINUX_VERSION_CODE`-оор хувилбарын ялгааг шийддэг тул 5.14-өөс дээш kernel дээр өөрчлөлтгүй build хийгдэнэ.
-Өөр kernel дээр ажиллуулахдаа `make -C src/kernel clean && make -C src/kernel` гэж тухайн машин дээрээ дахин build хийнэ.
+| Орчин | Kernel | Compiler | Өмнө бүртгэсэн үр дүн |
+| :--- | :--- | :--- | :--- |
+| Ubuntu 26.04.1 LTS (багийн VM) | `7.0.0-42-generic` | GCC 15 | QEMU `19/19 PASS` — `examples/qemu-ubuntu-26.04/` |
+| Ubuntu 24.04 LTS | `6.8.0-31-generic` | GCC 13 | QEMU `19/19 PASS` — `examples/qemu/` |
 
-## Quick Start (Ubuntu 26.04 VM; 24.04 дээр ч адилхан)
+Өөр kernel хувилбар ашиглахдаа тухайн системийн headers-тай дахин build хийнэ. Кодын нийцтэй байдлыг зорилтот kernel бүр дээр тусад нь шалгах шаардлагатай.
+
+## Суулгах ба ажиллуулах
+
+### 1. Шаардлагатай хэрэгслүүд
+
+Ubuntu дээр:
 
 ```bash
-sudo apt update && sudo apt install -y build-essential linux-headers-$(uname -r) python3
-git clone https://github.com/B242270134/Uildliin_system_bd1 tasklist-graph && cd tasklist-graph
-make -C src/kernel                       # 3 module build
-sudo insmod src/kernel/tasklist_linear.ko && sudo dmesg | tail -20 && sudo rmmod tasklist_linear   # Part I
-sudo insmod src/kernel/tasklist_dfs.ko    && sudo dmesg | tail -20 && sudo rmmod tasklist_dfs      # Part II
-sudo insmod src/kernel/tasktree.ko                                                                   # UI-д
-python3 src/ui/server.py                  # http://127.0.0.1:8000
-```
-Эсвэл бүгдийг нэг дор: `bash scripts/run_all.sh`
-
-Module-гүй орчинд UI-г шалгах: `python3 src/ui/server.py --source userspace` эсвэл
-`python3 src/ui/server.py --source file --file examples/snapshot1_kernel.json`.
-
-## Бүтэц
-
-```
-src/kernel/   tasklist_linear.c (Part I), tasklist_dfs.c (Part II), tasktree.c (/proc JSON), common.h, Makefile
-src/ui/       server.py (Python stdlib HTTP), index.html (SVG task graph)
-tests/        run_tests.sh, compare_ps.py (DFS + LINEAR + ps шалгалт), forktree.py (fork мод, thread-ээс fork горим),
-              bd1_threads.c, thread_fork.c
-examples/     QEMU-д бодит kernel дээр авсан лог, JSON snapshot, ps гаралт:
-              qemu-ubuntu-26.04/ (7.0.0-42), qemu/ (6.8.0-31)
-docs/         MANUAL.md, img/ (UI screenshot)
-scripts/      run_all.sh, qemu_test.sh (бодит kernel дээр автомат 19 шалгалт)
+sudo apt update
+sudo apt install -y build-essential linux-headers-$(uname -r) python3
 ```
 
-## Тест
+### 2. Repository татах
+
 ```bash
-bash tests/run_tests.sh            
-python3 tests/compare_ps.py         
-bash scripts/qemu_test.sh /boot/vmlinuz-$(uname -r)   
+git clone https://github.com/B242270134/Uildliin_system_bd1.git tasklist-graph
+cd tasklist-graph
 ```
 
-## Ашигласан эх сурвалж / AI
-- OSC 10e, Ch.3 Programming Project 3; Linux kernel `<linux/sched.h>`, `<linux/list.h>`, `<linux/seq_file.h>`.
-- Гадны сан ашиглаагүй (UI нь цэвэр JavaScript + SVG, сервер нь Python стандарт сан).
-- AI туслах (Claude) ашиглан заавар бэлтгэсэн; 
+### 3. Kernel module-уудыг build хийх
+
+```bash
+make -C src/kernel clean
+make -C src/kernel
+```
+
+### 4. Linear listing турших
+
+```bash
+sudo insmod src/kernel/tasklist_linear.ko
+sudo dmesg | tail -20
+sudo rmmod tasklist_linear
+```
+
+### 5. DFS listing турших
+
+```bash
+sudo insmod src/kernel/tasklist_dfs.ko
+sudo dmesg | tail -20
+sudo rmmod tasklist_dfs
+```
+
+### 6. Kernel snapshot-оор UI ажиллуулах
+
+```bash
+sudo insmod src/kernel/tasktree.ko
+python3 src/ui/server.py
+```
+
+Браузераас `http://127.0.0.1:8000` хаягийг нээнэ. Туршилтын дараа module-ийг буулгана:
+
+```bash
+sudo rmmod tasktree
+```
+
+### 7. Kernel module-гүйгээр UI турших
+
+**Userspace mode:**
+
+```bash
+python3 src/ui/server.py --source userspace
+```
+
+**File mode:**
+
+```bash
+python3 src/ui/server.py --source file --file examples/snapshot1_kernel.json
+```
+
+Бэлэн автомат скрипт:
+
+```bash
+bash scripts/run_all.sh
+```
+
+> Kernel module ажиллуулахад тохирох Linux kernel headers болон `sudo` эрх шаардлагатай. `userspace` горим нь `/proc`-оос мэдээлэл уншдаг тул kernel module-ийн ажиллагааг дангаараа батлахгүй.
+
+## Туршилт ба шалгалт
+
+```bash
+# Төслийн үндсэн тестүүд
+bash tests/run_tests.sh
+
+# DFS / Linear / ps харьцуулалт
+python3 tests/compare_ps.py
+
+# QEMU-д kernel турших (тохирох орчин шаардлагатай)
+bash scripts/qemu_test.sh /boot/vmlinuz-$(uname -r)
+```
+
+Туршилтын тайланд дараах зүйлсийг ялгаж тэмдэглэнэ:
+
+- **Kernel module:** `dmesg`, `/proc/tasktree`, module ачаалах/буулгах үр дүн.
+- **Userspace UI:** `/proc` өгөгдлөөр граф дүрслэл ажилласан эсэх.
+- **Процессын төлөв:** `R`, `S`, `T`, `Z`, `I`-г ажигласан баримт; `D` төлөвийг заавал хүчээр үүсгэх шаардлагагүй.
+- **DFS:** процессын эцэг–хүүхдийн холбоо, тойрох дараалал, UI дүрслэл.
+
+## Төслийн бүтэц
+
+```text
+Uildliin_system_bd1/
+├── README.md
+├── docs/
+│   ├── MANUAL.md
+│   └── img/                  # Task Graph screenshot-ууд
+├── examples/                 # QEMU лог, snapshot, жишээ өгөгдөл
+├── scripts/
+│   ├── run_all.sh
+│   └── qemu_test.sh
+├── src/
+│   ├── kernel/
+│   │   ├── tasklist_linear.c
+│   │   ├── tasklist_dfs.c
+│   │   ├── tasktree.c
+│   │   ├── common.h
+│   │   └── Makefile
+│   └── ui/
+│       ├── server.py
+│       └── index.html
+└── tests/                    # Автомат болон туслах тестүүд
+```
+
+## Тайлбар ба хязгаарлалт
+
+- Процессын жагсаалт динамик тул хоёр дараалсан snapshot-ийн PID болон модны бүтэц өөр байж болно.
+- Kernel thread-үүд болон төлөвийн тэмдэглэгээ kernel хувилбараас хамааран ялгаатай харагдаж болно.
+- `userspace` mode болон `kernel` mode нь өгөгдөл авах өөр арга тул үр дүнг тусад нь тайлбарлана.
+- Screenshot-ууд нь тухайн мөчийн туршилтын баримт бөгөөд бүх орчинд ижил PID эсвэл процессын тоо гарахгүй.
+
+## Ашигласан материал
+
+- Silberschatz, Galvin, Gagne — *Operating System Concepts*, 10th Edition, Wiley, 2018, Chapter 3: Processes, Programming Project 3.
+
