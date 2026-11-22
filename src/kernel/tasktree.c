@@ -283,7 +283,7 @@ for (i = 1; i < s->count; i++) {
 }
 }
 
-	static void tg_dfs(struct tg_snap *s)
+static void tg_dfs(struct tg_snap *s)
 {
 	int sp = 0;
 	int i;
