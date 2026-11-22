@@ -8,6 +8,7 @@
  */
 #define pr_fmt(fmt) "tasklist_linear: " fmt
 
+#include <linux/ktime.h>
 #include <linux/init.h>
 #include <linux/kernel.h>
 #include <linux/module.h>
@@ -18,6 +19,7 @@
 
 static int __init tasklist_linear_init(void)
 {
+	u64 start_ns, end_ns;
 	struct task_struct *task;
 	int count = 0;
 
@@ -26,18 +28,30 @@ static int __init tasklist_linear_init(void)
 
 	/* Task жагсаалт нь RCU-гаар хамгаалагдсан тул уншихдаа түгжинэ. */
 	rcu_read_lock();
-	for_each_process(task) {
-		pr_info("%-16s %7d %7d %5c %8u\n",
-			task->comm,
-			task_pid_nr(task),
-			task_ppid_safe(task),
-			task_state_to_char(task),
-			TASK_STATE_RAW(task));
-		count++;
-	}
+	
+	rcu_read_lock();
+
+start_ns = ktime_get_ns();
+
+for_each_process(task) {
+        pr_info("%-16s %7d %7d %5c %8u\n",
+                task->comm,
+                task_pid_nr(task),
+                task_ppid_safe(task),
+                task_state_to_char(task),
+                TASK_STATE_RAW(task));
+        count++;
+}
+
+	end_ns = ktime_get_ns();
+
 	rcu_read_unlock();
 
+	pr_info("Linear traversal time: %llu ns\n",
+        (unsigned long long)(end_ns - start_ns));
+
 	pr_info("Total tasks listed: %d\n", count);
+	
 	return 0;
 }
 

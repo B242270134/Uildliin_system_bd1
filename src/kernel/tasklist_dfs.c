@@ -7,6 +7,7 @@
 #define pr_fmt(fmt) "tasklist_dfs: " fmt
 
 #include <linux/init.h>
+#include <linux/ktime.h>
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/sched.h>
@@ -194,6 +195,7 @@ static void iterative_dfs(void)
 
 static int __init tasklist_dfs_init(void)
 {
+	u64 t0, t1, t2, t3;
 	records = kvcalloc(MAX_TASKS, sizeof(*records), GFP_KERNEL);
 	if (!records)
 		return -ENOMEM;
@@ -206,9 +208,31 @@ static int __init tasklist_dfs_init(void)
 
 	pr_info("Loading iterative DFS module\n");
 
+	t0 = ktime_get_ns();
+
 	capture_tasks();
+
+	t1 = ktime_get_ns();
+
 	build_tree();
+
+	t2 = ktime_get_ns();
+
 	iterative_dfs();
+
+	t3 = ktime_get_ns();
+
+	pr_info("Snapshot capture: %llu ns\n",
+    	    (unsigned long long)(t1 - t0));
+
+	pr_info("Tree building: %llu ns\n",
+    	    (unsigned long long)(t2 - t1));
+
+	pr_info("DFS traversal: %llu ns\n",
+        	(unsigned long long)(t3 - t2));
+
+	pr_info("DFS total time: %llu ns\n",
+    	    (unsigned long long)(t3 - t0));
 
 	kvfree(stack);
 	kvfree(records);
