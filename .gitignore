@@ -9,3 +9,5 @@ modules.order
 .tmp_versions/
 __pycache__/
 examples/my_run_*/
+src/kernel/tasktree.c.pre_warning_fix
+src/kernel/tasktree.c.pre_warning_fix
